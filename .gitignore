@@ -140,3 +140,6 @@ dmypy.json
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
+
+# pipenv support for multiple Python versions?
+Pipfile.lock
