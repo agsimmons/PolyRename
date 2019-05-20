@@ -2,8 +2,7 @@ from .child import ChildTransformation
 
 
 class SequenceTransformation(ChildTransformation):
-    def __init__(self, file_sequence, initial=1, step=1, pad_character='0', pad_length=1):
-        self.file_sequence = file_sequence
+    def configure(self, initial=1, step=1, pad_character='0', pad_length=1):
         self.initial = initial
         self.step = step
         self.pad_character = pad_character

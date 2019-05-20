@@ -2,7 +2,7 @@ from .child import ChildTransformation
 
 
 class TextTransformation(ChildTransformation):
-    def __init__(self, text):
+    def configure(self, text):
         self.text = text
 
     def resolve(self):
