@@ -1,7 +1,7 @@
-from .child import ChildTransformation
+from polyrename.transformation.transformation import Transformation
 
 
-class SequenceTransformation(ChildTransformation):
+class SequenceTransformation(Transformation):
     def configure(self, initial=1, step=1, pad_character='0', pad_length=1):
         self.initial = initial
         self.step = step

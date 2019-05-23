@@ -1,4 +1,4 @@
-from polyrename.transformation.child import text, sequence
+from polyrename.transformation.child import string, sequence
 
 
 def test_text():
@@ -6,7 +6,7 @@ def test_text():
     file_sequence = range(4)
 
     my_string = 'Hello World!'
-    my_text = text.TextTransformation(file_sequence)
+    my_text = string.StringTransformation(file_sequence)
     my_text.configure(my_string)
     assert my_text.resolve() == my_string
 
