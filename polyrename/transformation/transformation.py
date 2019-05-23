@@ -6,5 +6,8 @@ class Transformation:
     def schema(self):
         raise NotImplementedError
 
+    def configure(self):
+        raise NotImplementedError
+
     def resolve(self):
         raise NotImplementedError
