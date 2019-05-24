@@ -19,11 +19,10 @@ class SuffixTransformation(Transformation):
         super(SuffixTransformation, self).__init__(file_sequence)
         self.text = text
 
-    # TODO: Don't put suffix after extension
     def resolve(self):
         return_sequence = []
         for file in self.file_sequence:
-            file_name = file.name + self.text
+            file_name = file.stem + self.text + file.suffix
             file_path = file.parent / file_name
             return_sequence.append(file_path)
 
