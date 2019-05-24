@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/agsimmons/PolyRename.svg?branch=develop)](https://travis-ci.org/agsimmons/PolyRename)
+
 # PolyRename
 A tool for renaming large sets of files
 
