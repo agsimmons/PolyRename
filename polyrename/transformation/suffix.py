@@ -1,26 +1,30 @@
-from polyrename.transformation.transformation import Transformation
+from .transformation import Transformation
 
 
 class SuffixTransformation(Transformation):
-    def get_schema(self):
-        return {
-            'metadata': {
-                'name': 'Suffix',
-                'description': 'Append text to filename'
-            },
-            'options': [{
-                'name': 'text',
-                'description': 'Text to append',
-                'datatype': str,
-                'required': True
-            }]
-        }
+    schema = {
+        'metadata': {
+            'name': 'Suffix',
+            'description': 'Append text to filename'
+        },
+        'options': [{
+            'name': 'Text',
+            'description': 'Text to append',
+            'datatype': str,
+            'required': True
+        }]
+    }
 
-    def configure(self, text):
+    def __init__(self, file_sequence, text):
+        super(SuffixTransformation, self).__init__(file_sequence)
         self.text = text
 
+    # TODO: Don't put suffix after extension
     def resolve(self):
+        return_sequence = []
         for file in self.file_sequence:
-            file = file + self.text
+            file_name = file.name + self.text
+            file_path = file.parent / file_name
+            return_sequence.append(file_path)
 
-        return self.file_sequence
+        return return_sequence

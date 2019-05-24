@@ -1,26 +1,29 @@
-from polyrename.transformation.transformation import Transformation
+from .transformation import Transformation
 
 
 class PrefixTransformation(Transformation):
-    def get_schema(self):
-        return {
-            'metadata': {
-                'name': 'Prefix',
-                'description': 'Prepend text to filename'
-            },
-            'options': [{
-                'name': 'text',
-                'description': 'Text to prepend',
-                'datatype': str,
-                'required': True
-            }]
-        }
+    schema = {
+        'metadata': {
+            'name': 'Prefix',
+            'description': 'Prepend text to filename'
+        },
+        'options': [{
+            'name': 'Text',
+            'description': 'Text to prepend',
+            'datatype': str,
+            'required': True
+        }]
+    }
 
-    def configure(self, text):
+    def __init__(self, file_sequence, text):
+        super(PrefixTransformation, self).__init__(file_sequence)
         self.text = text
 
     def resolve(self):
+        return_sequence = []
         for file in self.file_sequence:
-            file = self.text + file
+            file_name = self.text + file.name
+            file_path = file.parent / file_name
+            return_sequence.append(file_path)
 
-        return self.file_sequence
+        return return_sequence
