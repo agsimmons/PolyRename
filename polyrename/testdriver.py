@@ -1,9 +1,7 @@
 import argparse
 from pathlib import Path
 
-from transformation import prefix, suffix, date
-
-TRANSFORMATION_CLASSES = [prefix.PrefixTransformation, suffix.SuffixTransformation, date.DateTransformation]
+from transformation import TRANSFORMATIONS
 
 
 def parse_args():
@@ -17,19 +15,19 @@ def main():
     file_sequence = [Path(file) for file in args.files if Path(file).exists()]
 
     print('Choose a transformation:')
-    for i, tranformation in enumerate(TRANSFORMATION_CLASSES):
+    for i, tranformation in enumerate(TRANSFORMATIONS):
         print('{}) {}'.format(i, tranformation.schema['metadata']['name']))
 
     # Ask for selection input
     choice = None
-    while choice not in range(len(TRANSFORMATION_CLASSES)):
+    while choice not in range(len(TRANSFORMATIONS)):
         try:
             choice = int(input('Selection: '))
         except ValueError:
             pass
 
     # Gather arguments for selected transformation
-    transformation_class = TRANSFORMATION_CLASSES[choice]
+    transformation_class = TRANSFORMATIONS[choice]
     transformation_args = []
     for option in transformation_class.schema['options']:
         input_prompt = '{} ({}):'.format(option['name'], option['description'])
