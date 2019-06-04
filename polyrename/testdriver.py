@@ -1,9 +1,9 @@
 import argparse
 from pathlib import Path
 
-from transformation import prefix, suffix
+from transformation import prefix, suffix, date
 
-TRANSFORMATION_CLASSES = [prefix.PrefixTransformation, suffix.SuffixTransformation]
+TRANSFORMATION_CLASSES = [prefix.PrefixTransformation, suffix.SuffixTransformation, date.DateTransformation]
 
 
 def parse_args():
