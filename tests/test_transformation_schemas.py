@@ -26,7 +26,7 @@ def test_schemas():
         # Test options block
         assert 'options' in schema
         assert isinstance(schema['options'], list)
-        # TODO: Make sure list isn't empty?
+        assert len(schema['options']) > 0
         for option in schema['options']:
             # Name
             assert 'name' in option
