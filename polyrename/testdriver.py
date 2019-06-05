@@ -35,7 +35,6 @@ def main():
         while choice is None:
             try:
                 choice = option['datatype'](input(input_prompt))
-                print(choice)
             except ValueError:
                 print('Invalid input!')
         transformation_args.append(choice)
