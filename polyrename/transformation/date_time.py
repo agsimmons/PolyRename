@@ -1,4 +1,5 @@
 from .transformation import Transformation
+from polyrename.utils.path_utils import insert_text_before_extension
 
 import datetime
 
@@ -81,12 +82,12 @@ class DateTimeTransformation(Transformation):
 
     def resolve(self):
 
-        date_object = datetime.datetime(*(self.year, self.month, self.day, self.hour, self.minute, self.second, self.microsecond))
+        datetime_object = datetime.datetime(*(self.year, self.month, self.day, self.hour, self.minute, self.second, self.microsecond))
+        resolved_datetime_string = datetime_object.strftime(self.format_string)
 
         return_sequence = []
         for file in self.file_sequence:
-            file_name = file.stem + date_object.strftime(self.format_string) + file.suffix
-            file_path = file.parent / file_name
+            file_path = insert_text_before_extension(file, resolved_datetime_string)
             return_sequence.append(file_path)
 
         return return_sequence

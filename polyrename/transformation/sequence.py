@@ -1,4 +1,5 @@
 from .transformation import Transformation
+from polyrename.utils.path_utils import insert_text_before_extension
 
 
 class SequenceTransformation(Transformation):
@@ -50,8 +51,7 @@ class SequenceTransformation(Transformation):
         return_sequence = []
         sequence_value = self.start
         for file in self.file_sequence:
-            file_name = file.stem + str(sequence_value).rjust(self.pad_len, self.pad_char) + file.suffix
-            file_path = file.parent / file_name
+            file_path = insert_text_before_extension(file, str(sequence_value).rjust(self.pad_len, self.pad_char))
             return_sequence.append(file_path)
 
             sequence_value += self.step

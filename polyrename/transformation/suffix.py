@@ -1,4 +1,5 @@
 from .transformation import Transformation
+from polyrename.utils.path_utils import insert_text_before_extension
 
 
 class SuffixTransformation(Transformation):
@@ -24,8 +25,7 @@ class SuffixTransformation(Transformation):
     def resolve(self):
         return_sequence = []
         for file in self.file_sequence:
-            file_name = file.stem + self.text + file.suffix
-            file_path = file.parent / file_name
+            file_path = insert_text_before_extension(file, self.text)
             return_sequence.append(file_path)
 
         return return_sequence
