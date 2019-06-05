@@ -62,7 +62,7 @@ class DateTimeTransformation(Transformation):
             },
             {
                 'name': 'Format String',
-                'description': 'Format string for date (see https://docs.python.org/3.7/library/datetime.html#strftime-and-strptime-behavior)',
+                'description': 'Format string for datetime (see https://docs.python.org/3.7/library/datetime.html#strftime-and-strptime-behavior)',
                 'datatype': str,
                 'required': True
             }
