@@ -30,7 +30,16 @@ def main():
     transformation_class = TRANSFORMATIONS[choice]
     transformation_args = []
     for option in transformation_class.schema['options']:
-        input_prompt = '{} ({}):'.format(option['name'], option['description'])
+
+        # Change prompt to show default value if it is specified
+        if option['required']:
+            if 'default_value' in option:
+                input_prompt = '{} ({}) (Default: {}):'.format(option['name'], option['description'], option['default_value'])
+            else:
+                input_prompt = '{} ({}):'.format(option['name'], option['description'])
+        else:
+            input_prompt = '{} ({}):'.format(option['name'], option['description'])
+
         choice = None
         while choice is None:
             try:
@@ -40,7 +49,7 @@ def main():
                 if user_input != '':
                     choice = option['datatype'](user_input)
                 else:
-                    choice = option['none_value']
+                    choice = option['default_value']
             except ValueError:
                 print('Invalid input!')
         transformation_args.append(choice)

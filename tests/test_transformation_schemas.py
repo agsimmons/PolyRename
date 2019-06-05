@@ -43,8 +43,8 @@ def test_schemas():
             assert 'required' in option
             assert isinstance(option['required'], bool)
             if not option['required']:
-                assert 'none_value' in option
-                assert isinstance(option['none_value'], option['datatype'])
+                assert 'default_value' in option
+                assert isinstance(option['default_value'], option['datatype'])
 
 
 def test_unique_names():

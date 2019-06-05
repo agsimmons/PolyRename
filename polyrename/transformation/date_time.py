@@ -15,49 +15,49 @@ class DateTimeTransformation(Transformation):
                 'description': 'Date year',
                 'datatype': int,
                 'required': False,
-                'none_value': 2000
+                'default_value': 2000
             },
             {
                 'name': 'Month',
                 'description': 'Date month',
                 'datatype': int,
                 'required': False,
-                'none_value': 1
+                'default_value': 1
             },
             {
                 'name': 'Day',
                 'description': 'Date day',
                 'datatype': int,
                 'required': False,
-                'none_value': 1
+                'default_value': 1
             },
             {
                 'name': 'Hour',
                 'description': 'Time hour',
                 'datatype': int,
                 'required': False,
-                'none_value': 0
+                'default_value': 0
             },
             {
                 'name': 'Minute',
                 'description': 'Time minute',
                 'datatype': int,
                 'required': False,
-                'none_value': 0
+                'default_value': 0
             },
             {
                 'name': 'Second',
                 'description': 'Time second',
                 'datatype': int,
                 'required': False,
-                'none_value': 0
+                'default_value': 0
             },
             {
                 'name': 'Microsecond',
                 'description': 'Time microsecond',
                 'datatype': int,
                 'required': False,
-                'none_value': 0
+                'default_value': 0
             },
             {
                 'name': 'Format String',
