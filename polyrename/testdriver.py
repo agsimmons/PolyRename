@@ -32,11 +32,10 @@ def main():
     for option in transformation_class.schema['options']:
 
         # Change prompt to show default value if it is specified
-        if option['required']:
-            if 'default_value' in option:
-                input_prompt = '{} ({}) (Default: {}):'.format(option['name'], option['description'], option['default_value'])
-            else:
-                input_prompt = '{} ({}):'.format(option['name'], option['description'])
+        if option['required'] and 'default_value' in option:
+            input_prompt = '{} ({}) (Default: {}):'.format(option['name'],
+                                                           option['description'],
+                                                           option['default_value'])
         else:
             input_prompt = '{} ({}):'.format(option['name'], option['description'])
 
