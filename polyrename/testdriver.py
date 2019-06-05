@@ -34,7 +34,13 @@ def main():
         choice = None
         while choice is None:
             try:
-                choice = option['datatype'](input(input_prompt))
+                user_input = input(input_prompt)
+
+                # Allow for none_value to be used
+                if user_input != '':
+                    choice = option['datatype'](user_input)
+                else:
+                    choice = option['none_value']
             except ValueError:
                 print('Invalid input!')
         transformation_args.append(choice)
