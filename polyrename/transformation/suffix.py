@@ -7,12 +7,14 @@ class SuffixTransformation(Transformation):
             'name': 'Suffix',
             'description': 'Append text to filename'
         },
-        'options': [{
-            'name': 'Text',
-            'description': 'Text to append',
-            'datatype': str,
-            'required': True
-        }]
+        'options': [
+            {
+                'name': 'Text',
+                'description': 'Text to append',
+                'datatype': str,
+                'required': True
+            }
+        ]
     }
 
     def __init__(self, file_sequence, text):

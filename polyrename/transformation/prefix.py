@@ -7,12 +7,14 @@ class PrefixTransformation(Transformation):
             'name': 'Prefix',
             'description': 'Prepend text to filename'
         },
-        'options': [{
-            'name': 'Text',
-            'description': 'Text to prepend',
-            'datatype': str,
-            'required': True
-        }]
+        'options': [
+            {
+                'name': 'Text',
+                'description': 'Text to prepend',
+                'datatype': str,
+                'required': True
+            }
+        ]
     }
 
     def __init__(self, file_sequence, text):
