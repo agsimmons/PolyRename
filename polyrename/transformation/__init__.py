@@ -1,4 +1,4 @@
-from . import transformation, date_time, prefix, suffix
+from . import transformation, date_time, prefix, suffix, sequence
 
 
 # List of all available transformations

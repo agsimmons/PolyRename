@@ -1,25 +1,31 @@
 from pathlib import Path
 
-from polyrename.transformation import prefix, suffix, date_time
+from polyrename.transformation import prefix, suffix, date_time, sequence
+
+
+TEST_SEQUENCE_01 = [Path('/home/test/example.py'), Path('file_without_extension'), Path('relative.jpg')]
 
 
 def test_prefix():
     """Verify that prefix tranformation behaves as expected"""
-    file_sequence = [Path('/home/test/example.py'), Path('file_without_extension'), Path('relative.jpg')]
-    transformation = prefix.PrefixTransformation(file_sequence, 'HelloWorld')
+    transformation = prefix.PrefixTransformation(TEST_SEQUENCE_01, 'HelloWorld')
     assert transformation.resolve() == [Path('/home/test/HelloWorldexample.py'), Path('HelloWorldfile_without_extension'), Path('HelloWorldrelative.jpg')]
 
 
 def test_suffix():
     """Verify that suffix tranformation behaves as expected"""
     # TODO: Determine how we want to handle things like 'example.tar.gz'
-    file_sequence = [Path('/home/test/example.py'), Path('file_without_extension'), Path('relative.jpg')]
-    transformation = suffix.SuffixTransformation(file_sequence, 'HelloWorld')
+    transformation = suffix.SuffixTransformation(TEST_SEQUENCE_01, 'HelloWorld')
     assert transformation.resolve() == [Path('/home/test/exampleHelloWorld.py'), Path('file_without_extensionHelloWorld'), Path('relativeHelloWorld.jpg')]
 
 
 def test_date():
     """Verify that date transformation behaves as expected"""
-    file_sequence = [Path('/home/test/example.py'), Path('file_without_extension'), Path('relative.jpg')]
-    transformation = date_time.DateTimeTransformation(file_sequence, 2012, 1, 3, 0, 0, 0, 0, ' (%Y-%m-%d)')
+    transformation = date_time.DateTimeTransformation(TEST_SEQUENCE_01, 2012, 1, 3, 0, 0, 0, 0, ' (%Y-%m-%d)')
     assert transformation.resolve() == [Path('/home/test/example (2012-01-03).py'), Path('file_without_extension (2012-01-03)'), Path('relative (2012-01-03).jpg')]
+
+
+def test_sequence():
+    """Verify that sequence transformation behaves as expected"""
+    transformation = sequence.SequenceTransformation(TEST_SEQUENCE_01, 10, 22, 'a', 4)
+    assert transformation.resolve() == [Path('/home/test/exampleaa10.py'), Path('file_without_extensionaa32'), Path('relativeaa54.jpg')]
