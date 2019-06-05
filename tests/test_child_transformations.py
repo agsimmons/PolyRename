@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from polyrename.transformation import prefix, suffix, date
+from polyrename.transformation import prefix, suffix, date_time
 
 
 def test_prefix():
@@ -21,5 +21,5 @@ def test_suffix():
 def test_date():
     """Verify that date transformation behaves as expected"""
     file_sequence = [Path('/home/test/example.py'), Path('file_without_extension'), Path('relative.jpg')]
-    transformation = date.DateTransformation(file_sequence, 2012, 1, 3, ' (%Y-%m-%d)')
+    transformation = date_time.DateTimeTransformation(file_sequence, 2012, 1, 3, 0, 0, 0, 0, ' (%Y-%m-%d)')
     assert transformation.resolve() == [Path('/home/test/example (2012-01-03).py'), Path('file_without_extension (2012-01-03)'), Path('relative (2012-01-03).jpg')]
