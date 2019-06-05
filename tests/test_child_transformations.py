@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from polyrename.transformation import prefix, suffix, date_time, sequence
+from polyrename.transformation import prefix, suffix, date_time, sequence, current_datetime
 
 
 TEST_SEQUENCE_01 = [Path('/home/test/example.py'), Path('file_without_extension'), Path('relative.jpg')]
@@ -29,3 +29,7 @@ def test_sequence():
     """Verify that sequence transformation behaves as expected"""
     transformation = sequence.SequenceTransformation(TEST_SEQUENCE_01, 10, 22, 'a', 4)
     assert transformation.resolve() == [Path('/home/test/exampleaa10.py'), Path('file_without_extensionaa32'), Path('relativeaa54.jpg')]
+
+
+# TODO
+# def test_current_datetime():
