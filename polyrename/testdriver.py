@@ -32,9 +32,10 @@ def main():
     for option in transformation_class.schema['options']:
         input_prompt = '{} ({}):'.format(option['name'], option['description'])
         choice = None
-        while not choice:
+        while choice is None:
             try:
                 choice = option['datatype'](input(input_prompt))
+                print(choice)
             except ValueError:
                 print('Invalid input!')
         transformation_args.append(choice)
