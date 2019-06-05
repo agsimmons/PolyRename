@@ -19,7 +19,7 @@ def test_suffix():
     assert transformation.resolve() == [Path('/home/test/exampleHelloWorld.py'), Path('file_without_extensionHelloWorld'), Path('relativeHelloWorld.jpg')]
 
 
-def test_date():
+def test_date_time():
     """Verify that date transformation behaves as expected"""
     transformation = date_time.DateTimeTransformation(TEST_SEQUENCE_01, 2012, 1, 3, 0, 0, 0, 0, ' (%Y-%m-%d)')
     assert transformation.resolve() == [Path('/home/test/example (2012-01-03).py'), Path('file_without_extension (2012-01-03)'), Path('relative (2012-01-03).jpg')]
