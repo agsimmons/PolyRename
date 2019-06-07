@@ -1,5 +1,5 @@
-from .transformation import Transformation
-from .utils.path_utils import insert_text_before_extension
+from polyrename.transformation.transformation import Transformation
+from polyrename.transformation.utils.path_utils import insert_text_before_extension
 
 import datetime
 

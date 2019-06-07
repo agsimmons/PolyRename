@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
 
-from transformation import TRANSFORMATIONS
+from polyrename.transformation import TRANSFORMATIONS
 
 
 def parse_args():

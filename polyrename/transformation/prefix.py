@@ -1,4 +1,4 @@
-from .transformation import Transformation
+from polyrename.transformation.transformation import Transformation
 
 
 class PrefixTransformation(Transformation):
