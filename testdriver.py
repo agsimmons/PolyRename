@@ -48,7 +48,8 @@ def main():
                 if user_input != '':
                     choice = option['datatype'](user_input)
                 else:
-                    choice = option['default_value']
+                    if 'default_value' in option:
+                        choice = option['default_value']
             except ValueError:
                 print('Invalid input!')
         transformation_args.append(choice)
