@@ -1,5 +1,6 @@
 import argparse
 from pathlib import Path
+import shutil
 
 from polyrename.transformation import TRANSFORMATIONS
 
@@ -57,8 +58,19 @@ def main():
     # Create transformation with selected arguments
     tranformation = transformation_class(file_sequence, *transformation_args)
     transformed_file_sequence = tranformation.resolve()
-    for file_pairs in zip(file_sequence, transformed_file_sequence):
-        print('{} -> {}'.format(*file_pairs))
+    print('Preview:')
+    file_pairs = list(zip(file_sequence, transformed_file_sequence))
+    for file_pair in file_pairs:
+        print('{} -> {}'.format(*file_pair))
+
+    # Ask to perform rename operation
+    response = None
+    while response not in ['y', 'n']:
+        response = input('Perform rename operation(s)? (y/n): ').lower()
+
+    if response == 'y':
+        for file_pair in file_pairs:
+            shutil.move(*file_pair)
 
 
 if __name__ == '__main__':
