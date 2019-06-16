@@ -19,7 +19,7 @@ class SuffixTransformation(Transformation):
     }
 
     def __init__(self, file_sequence, text):
-        super(SuffixTransformation, self).__init__(file_sequence)
+        super().__init__(file_sequence)
         self.text = text
 
     def resolve(self):

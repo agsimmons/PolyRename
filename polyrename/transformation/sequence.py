@@ -41,7 +41,7 @@ class SequenceTransformation(Transformation):
     }
 
     def __init__(self, file_sequence, start, step, pad_char, pad_len):
-        super(SequenceTransformation, self).__init__(file_sequence)
+        super().__init__(file_sequence)
         self.start = start
         self.step = step
         self.pad_char = pad_char

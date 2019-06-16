@@ -21,7 +21,7 @@ class CurrentDateTimeTransformation(Transformation):
     }
 
     def __init__(self, file_sequence, format_string):
-        super(CurrentDateTimeTransformation, self).__init__(file_sequence)
+        super().__init__(file_sequence)
         self.format_string = format_string
 
     def resolve(self):

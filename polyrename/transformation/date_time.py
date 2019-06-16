@@ -70,7 +70,7 @@ class DateTimeTransformation(Transformation):
     }
 
     def __init__(self, file_sequence, year, month, day, hour, minute, second, microsecond, format_string):
-        super(DateTimeTransformation, self).__init__(file_sequence)
+        super().__init__(file_sequence)
         self.year = year
         self.month = month
         self.day = day
