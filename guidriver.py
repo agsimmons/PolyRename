@@ -2,7 +2,7 @@ import argparse
 from pathlib import Path
 import sys
 
-from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QListView, QWidget, QTextEdit, QListWidget
+from PySide2.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QListView, QWidget, QTextEdit, QListWidget
 
 
 def parse_args():
@@ -69,7 +69,7 @@ def main():
 
     app = QApplication(sys.argv)
     window = Window(file_sequence)
-    sys.exit(app.exec())
+    sys.exit(app.exec_())
 
 
 if __name__ == '__main__':
