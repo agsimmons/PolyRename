@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from polyrename.transformation import prefix, suffix, date_time, sequence, current_datetime, insert
+from polyrename.transformation import prefix, suffix, date_time, sequence, current_datetime, insert, remove_range
 
 
 TEST_SEQUENCE_01 = [Path('/home/test/example.py'), Path('file_without_extension'), Path('relative.jpg')]
@@ -39,3 +39,17 @@ def test_insert():
     """Verify that insert transformation behaves as expected"""
     transformation = insert.InsertTransformation(TEST_SEQUENCE_01, 'hello', 7)
     assert transformation.resolve() == [Path('/home/test/examplehello.py'), Path('file_wihellothout_extension'), Path('relativhelloe.jpg')]
+
+def test_remove_range():
+    """Verify that remove range transformation behaves as expected"""
+    transformation = remove_range.RemoveRangeTransformation(TEST_SEQUENCE_01, -4, 0)
+    assert transformation.resolve() == [Path('/home/test/example.py'), Path('file_without_extension'), Path('relative.jpg')]
+
+    transformation = remove_range.RemoveRangeTransformation(TEST_SEQUENCE_01, 0, 2)
+    assert transformation.resolve() == [Path('/home/test/ample.py'), Path('le_without_extension'), Path('lative.jpg')]
+
+    transformation = remove_range.RemoveRangeTransformation(TEST_SEQUENCE_01, 0, 100)
+    assert transformation.resolve() == [Path('/home/test/.py'), Path(''), Path('.jpg')]
+
+    transformation = remove_range.RemoveRangeTransformation(TEST_SEQUENCE_01, 5, 32)
+    assert transformation.resolve() == [Path('/home/test/examp.py'), Path('file_'), Path('relat.jpg')]
