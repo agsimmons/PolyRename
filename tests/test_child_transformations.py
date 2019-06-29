@@ -40,6 +40,7 @@ def test_insert():
     transformation = insert.InsertTransformation(TEST_SEQUENCE_01, 'hello', 7)
     assert transformation.resolve() == [Path('/home/test/examplehello.py'), Path('file_wihellothout_extension'), Path('relativhelloe.jpg')]
 
+
 def test_remove_range():
     """Verify that remove range transformation behaves as expected"""
     transformation = remove_range.RemoveRangeTransformation(TEST_SEQUENCE_01, -4, 0)
