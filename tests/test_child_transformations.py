@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from polyrename.transformation import prefix, suffix, date_time, sequence, current_datetime, insert, remove_range
+from polyrename.transformation import prefix, suffix, date_time, sequence, current_datetime, insert, remove_range, replace_extension
 
 
 TEST_SEQUENCE_01 = [Path('/home/test/example.py'), Path('file_without_extension'), Path('relative.jpg')]
@@ -54,3 +54,9 @@ def test_remove_range():
 
     transformation = remove_range.RemoveRangeTransformation(TEST_SEQUENCE_01, 5, 32)
     assert transformation.resolve() == [Path('/home/test/examp.py'), Path('file_'), Path('relat.jpg')]
+
+
+def test_replace_extension():
+    """Verify that replace extension transformation behaves as expected"""
+    transformation = replace_extension.ReplaceExtensionTransformation(TEST_SEQUENCE_01, '.txt')
+    assert transformation.resolve() == [Path('/home/test/example.txt'), Path('file_without_extension.txt'), Path('relative.txt')]
