@@ -1,7 +1,7 @@
 import sys
 
 from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QListView, QWidget, QTextEdit, \
-    QListWidget, QDesktopWidget, QGridLayout, QGroupBox, QPushButton, QFileDialog
+    QListWidget, QDesktopWidget, QGridLayout, QGroupBox, QPushButton, QFileDialog, QAction
 
 from polyrename.file_sequence import FileSequence
 
@@ -13,6 +13,8 @@ class MainWindow(QMainWindow):
         self.file_sequence = FileSequence([])
 
         self.init_window()
+        self.init_menuBar()
+        self.init_statusBar()
         self.init_layout()
 
         self.show()
@@ -55,6 +57,37 @@ class MainWindow(QMainWindow):
         central_widget = QWidget()
         central_widget.setLayout(grid_layout)
         self.setCentralWidget(central_widget)
+
+    def init_menuBar(self):
+        menuBar = self.menuBar()
+        fileMenu = menuBar.addMenu('&File')
+        editMenu = menuBar.addMenu('&Edit')
+        helpMenu = menuBar.addMenu('&Help')
+
+        quitAction = QAction('&Quit', self)
+        quitAction.setShortcut('Ctrl+q')
+        quitAction.setStatusTip('Quit PolyRename')
+        quitAction.triggered.connect(self.close)
+        fileMenu.addAction(quitAction)
+
+        undoAction = QAction("&Undo", self)
+        undoAction.setShortcut("Ctrl+Z")
+        undoAction.setStatusTip('Undo last action')
+        editMenu.addAction(undoAction)
+
+        redoAction = QAction("&Redo", self)
+        redoAction.setShortcut("Ctrl+Shift+Z")
+        redoAction.setStatusTip('Redo last action')
+        editMenu.addAction(redoAction)
+
+        aboutAction = QAction('&About', self)
+        aboutAction.setShortcut('Ctrl+?')
+        aboutAction.setStatusTip('About PolyRename')
+        helpMenu.addAction(aboutAction)
+
+    def init_statusBar(self):
+        statusBar = self.statusBar()
+        statusBar.showMessage('Ready')
 
     def select_files_listener(self):
         files = QFileDialog.getOpenFileNames(self, 'Select Files', '.')
