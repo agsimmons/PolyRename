@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from polyrename.transformation import prefix, suffix, date_time, sequence, current_datetime, insert, remove_range, replace_extension, replace
+from polyrename.transformation import prefix, suffix, date_time, sequence, current_datetime, insert, remove_range, replace_extension, replace, regex_replace
 
 
 TEST_SEQUENCE_01 = [Path('/home/test/example.py'), Path('file_without_extension'), Path('relative.jpg'), Path('relative/path/extreme_extreme04.tar.gz')]
@@ -74,3 +74,10 @@ def test_replace():
 
     transformation = replace.ReplaceTransformation(TEST_SEQUENCE_01, 'ex', 'HELLO')
     assert transformation.resolve() == [Path('/home/test/HELLOample.py'), Path('file_without_HELLOtension'), Path('relative.jpg'), Path('relative/path/HELLOtreme_HELLOtreme04.tar.gz')]
+
+
+def test_regex_replace():
+    """Verify that regex replace transformation behaves as expected"""
+
+    transformation = regex_replace.RegexReplaceTransformation(TEST_SEQUENCE_01, '[_w]', 'HelloWorld')
+    assert transformation.resolve() == [Path('/home/test/example.py'), Path('fileHelloWorldHelloWorldithoutHelloWorldextension'), Path('relative.jpg'), Path('relative/path/extremeHelloWorldextreme04.tar.gz')]
