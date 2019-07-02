@@ -1,74 +1,70 @@
-import argparse
-from pathlib import Path
 import sys
 
-from PySide2.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QListView, QWidget, QTextEdit, QListWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QListView, QWidget, QTextEdit, \
+    QListWidget, QDesktopWidget, QGridLayout, QGroupBox, QPushButton, QFileDialog
+
+from polyrename.file_sequence import FileSequence
 
 
-def parse_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('files', nargs='+')
-    return parser.parse_args()
-
-
-class Window(QMainWindow):
-    def __init__(self, file_sequence):
+class MainWindow(QMainWindow):
+    def __init__(self):
         super().__init__()
 
-        self.title = 'PolyRename'
-        self.top = 100
-        self.left = 100
-        self.width = 640
-        self.height = 480
-
-        self.file_sequence = file_sequence
+        self.file_sequence = FileSequence([])
 
         self.init_window()
-        self.populate_file_selection()
+        self.init_layout()
 
         self.show()
 
     def init_window(self):
-        self.setWindowTitle(self.title)
-        self.setGeometry(self.left, self.top, self.width, self.height)
+        self.setWindowTitle('PolyRename')
+        self.resize(1280, 720)
 
-        # Left pane - Pipeline creator and transformation library
-        left_pane = QVBoxLayout()
-        self.pipeline_creator = QListView()
-        left_pane.addWidget(self.pipeline_creator)
+        # Center window on screen
+        # TODO: Test on multi-monitors
+        qr = self.frameGeometry()
+        cp = QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
 
-        self.transformation_library = QListView()
-        left_pane.addWidget(self.transformation_library)
+    def init_layout(self):
+        grid_layout = QGridLayout()
+        grid_layout.setSpacing(10)
 
-        # Right pane - File selection and transformation configuration
-        right_pane = QVBoxLayout()
-        self.file_selection = QListWidget()
-        right_pane.addWidget(self.file_selection)
-        self.transformation_config = QTextEdit()
-        right_pane.addWidget(self.transformation_config)
+        pipeline_editor = QGroupBox('Pipeline Editor')
+        grid_layout.addWidget(pipeline_editor, 0, 0)
 
-        hbox_layout = QHBoxLayout()
-        hbox_layout.addItem(left_pane)
-        hbox_layout.addItem(right_pane)
+        transformation_library = QGroupBox('Transformation Library')
+        grid_layout.addWidget(transformation_library, 1, 0)
 
-        content = QWidget()
-        content.setLayout(hbox_layout)
+        file_picker_group = QGroupBox('File Picker')
+        file_picker_group_layout = QVBoxLayout()
+        file_picker_group.setLayout(file_picker_group_layout)
+        file_picker = QListView()
+        file_picker.setModel(self.file_sequence)
+        file_picker_group.layout().addWidget(file_picker)
+        select_files = QPushButton("Select Files")
+        select_files.clicked.connect(self.select_files_listener)
+        file_picker_group.layout().addWidget(select_files)
+        grid_layout.addWidget(file_picker_group, 0, 1)
 
-        self.setCentralWidget(content)
+        transformation_config = QGroupBox('Transformation Config')
+        grid_layout.addWidget(transformation_config, 1, 1)
 
-    def populate_file_selection(self):
-        for file in self.file_sequence:
-            self.file_selection.addItem(file.name)
+        central_widget = QWidget()
+        central_widget.setLayout(grid_layout)
+        self.setCentralWidget(central_widget)
+
+    def select_files_listener(self):
+        files = QFileDialog.getOpenFileNames(self, 'Select Files', '.')
+        self.file_sequence = FileSequence(files[0])
+        print(self.file_sequence)
 
 
 def main():
-    args = parse_args()
-    file_sequence = [Path(file) for file in args.files]
-    print(args.files)
-    print(file_sequence)
-
     app = QApplication(sys.argv)
-    window = Window(file_sequence)
+    window = MainWindow()
     sys.exit(app.exec_())
 
 
