@@ -64,6 +64,12 @@ class MainWindow(QMainWindow):
         editMenu = menuBar.addMenu('&Edit')
         helpMenu = menuBar.addMenu('&Help')
 
+        selectFileAction = QAction('S&elect Files', self)
+        selectFileAction.setShortcut('Ctrl+e')
+        selectFileAction.setStatusTip('Select Files')
+        selectFileAction.triggered.connect(self.select_files_listener)
+        fileMenu.addAction(selectFileAction)
+
         quitAction = QAction('&Quit', self)
         quitAction.setShortcut('Ctrl+q')
         quitAction.setStatusTip('Quit PolyRename')
