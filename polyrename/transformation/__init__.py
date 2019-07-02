@@ -1,4 +1,4 @@
-from polyrename.transformation import transformation, date_time, prefix, suffix, sequence, current_datetime, insert, remove_range, replace_extension
+from polyrename.transformation import transformation, date_time, prefix, suffix, sequence, current_datetime, insert, remove_range, replace_extension, replace
 
 
 # List of all available transformations
