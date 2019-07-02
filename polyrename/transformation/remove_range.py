@@ -1,5 +1,4 @@
 from polyrename.transformation.transformation import Transformation
-from polyrename.transformation.utils.path_utils import insert_text_before_extension
 
 
 class RemoveRangeTransformation(Transformation):
