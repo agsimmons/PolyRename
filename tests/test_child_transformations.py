@@ -1,3 +1,4 @@
+import datetime
 from pathlib import Path
 
 from polyrename.transformation import prefix, suffix, date_time, sequence, current_datetime, insert, remove_range, replace_extension, replace, regex_replace
@@ -35,8 +36,25 @@ def test_sequence():
     assert transformation.resolve() == [Path('/home/test/exampleaa10.py'), Path('file_without_extensionaa32'), Path('relativeaa54.jpg'), Path('relative/path/extreme_extreme04.taraa76.gz')]
 
 
-# TODO
-# def test_current_datetime():
+def test_current_datetime():
+    """Verify that current datetime transformation behaves as expected"""
+
+    format_string = '%Y-%m-%d %H:%M:%S'
+
+    transformation = current_datetime.CurrentDateTimeTransformation(TEST_SEQUENCE_01, format_string)
+    resolved = transformation.resolve()
+
+    now = datetime.datetime.now()
+
+    # Make sure that all datetimes are the same
+    datetime_portions = [x.stem[-19:] for x in resolved]
+    assert len(set(datetime_portions)) == 1
+
+    then = datetime.datetime.strptime(datetime_portions[0], format_string)
+
+    elapsed = now - then
+
+    assert elapsed.seconds < 240
 
 
 def test_insert():
