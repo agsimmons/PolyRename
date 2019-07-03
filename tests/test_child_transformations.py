@@ -61,6 +61,9 @@ def test_remove_range():
     transformation = remove_range.RemoveRangeTransformation(TEST_SEQUENCE_01, 5, 32)
     assert transformation.resolve() == [Path('/home/test/examp.py'), Path('file_'), Path('relat.jpg'), Path('relative/path/extre.gz')]
 
+    transformation = remove_range.RemoveRangeTransformation(TEST_SEQUENCE_01, 100, 500)
+    assert transformation.resolve() == [Path('/home/test/example.py'), Path('file_without_extension'), Path('relative.jpg'), Path('relative/path/extreme_extreme04.tar.gz')]
+
 
 def test_replace_extension():
     """Verify that replace extension transformation behaves as expected"""
