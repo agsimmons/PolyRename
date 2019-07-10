@@ -56,8 +56,8 @@ def main():
         transformation_args.append(choice)
 
     # Create transformation with selected arguments
-    tranformation = transformation_class(file_sequence, *transformation_args)
-    transformed_file_sequence = tranformation.resolve()
+    tranformation = transformation_class(*transformation_args)
+    transformed_file_sequence = tranformation.resolve(file_sequence)
     print('Preview:')
     file_pairs = list(zip(file_sequence, transformed_file_sequence))
     for file_pair in file_pairs:

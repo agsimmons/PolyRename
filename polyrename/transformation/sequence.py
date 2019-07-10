@@ -40,17 +40,16 @@ class SequenceTransformation(Transformation):
         ]
     }
 
-    def __init__(self, file_sequence, start, step, pad_char, pad_len):
-        super().__init__(file_sequence)
+    def __init__(self, start, step, pad_char, pad_len):
         self.start = start
         self.step = step
         self.pad_char = pad_char
         self.pad_len = pad_len
 
-    def resolve(self):
+    def resolve(self, file_sequence):
         return_sequence = []
         sequence_value = self.start
-        for file in self.file_sequence:
+        for file in file_sequence:
             file_path = insert_text_before_extension(file, str(sequence_value).rjust(self.pad_len, self.pad_char))
             return_sequence.append(file_path)
 

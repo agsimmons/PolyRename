@@ -20,17 +20,15 @@ class CurrentDateTimeTransformation(Transformation):
         ]
     }
 
-    def __init__(self, file_sequence, format_string):
-        super().__init__(file_sequence)
+    def __init__(self, format_string):
         self.format_string = format_string
 
-    def resolve(self):
-
+    def resolve(self, file_sequence):
         datetime_object = datetime.datetime.now()
         resolved_datetime_string = datetime_object.strftime(self.format_string)
 
         return_sequence = []
-        for file in self.file_sequence:
+        for file in file_sequence:
             file_path = insert_text_before_extension(file, resolved_datetime_string)
             return_sequence.append(file_path)
 

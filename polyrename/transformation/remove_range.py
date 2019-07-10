@@ -23,14 +23,13 @@ class RemoveRangeTransformation(Transformation):
         ]
     }
 
-    def __init__(self, file_sequence, start, stop):
-        super().__init__(file_sequence)
+    def __init__(self, start, stop):
         self.start = start if start >= 0 else 0
         self.stop = stop
 
-    def resolve(self):
+    def resolve(self, file_sequence):
         return_sequence = []
-        for file in self.file_sequence:
+        for file in file_sequence:
 
             # TODO: Make this clearer
             file_name_characters = [x for x in file.stem]

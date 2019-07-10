@@ -18,13 +18,12 @@ class ReplaceExtensionTransformation(Transformation):
         ]
     }
 
-    def __init__(self, file_sequence, extension):
-        super().__init__(file_sequence)
+    def __init__(self, extension):
         self.extension = extension
 
-    def resolve(self):
+    def resolve(self, file_sequence):
         return_sequence = []
-        for file in self.file_sequence:
+        for file in file_sequence:
             file_path = file.parent / (file.stem + self.extension)
             return_sequence.append(file_path)
 
