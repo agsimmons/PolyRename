@@ -2,6 +2,7 @@ import sys
 
 from PySide2.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QListView, QWidget, QTextEdit, \
     QListWidget, QDesktopWidget, QGridLayout, QGroupBox, QPushButton, QFileDialog, QAction
+from PySide2.QtGui import QStandardItem, QStandardItemModel
 
 from polyrename.file_sequence import FileSequence
 
@@ -34,23 +35,27 @@ class MainWindow(QMainWindow):
         grid_layout = QGridLayout()
         grid_layout.setSpacing(10)
 
+        # Pipeline Editor
         pipeline_editor = QGroupBox('Pipeline Editor')
         grid_layout.addWidget(pipeline_editor, 0, 0)
 
+        # Transformation Library
         transformation_library = QGroupBox('Transformation Library')
         grid_layout.addWidget(transformation_library, 1, 0)
 
+        # File Picker
         file_picker_group = QGroupBox('File Picker')
         file_picker_group_layout = QVBoxLayout()
         file_picker_group.setLayout(file_picker_group_layout)
-        file_picker = QListView()
-        file_picker.setModel(self.file_sequence)
-        file_picker_group.layout().addWidget(file_picker)
+        self.file_picker = QListView()
+        self.file_model = QStandardItemModel(self.file_picker)
+        file_picker_group.layout().addWidget(self.file_picker)
         select_files = QPushButton("Select Files")
         select_files.clicked.connect(self.select_files_listener)
         file_picker_group.layout().addWidget(select_files)
         grid_layout.addWidget(file_picker_group, 0, 1)
 
+        # Transformation Configuration
         transformation_config = QGroupBox('Transformation Config')
         grid_layout.addWidget(transformation_config, 1, 1)
 
@@ -100,6 +105,13 @@ class MainWindow(QMainWindow):
         self.file_sequence = FileSequence(files[0])
         print(self.file_sequence)
 
+        # Update File Picker list from files[]
+        self.file_model.clear()
+        for f in range(self.file_sequence.rowCount()):
+            item = QStandardItem()
+            item.setText(files[0][f])
+            self.file_model.appendRow(item)
+        self.file_picker.setModel(self.file_model)
 
 def main():
     app = QApplication(sys.argv)
