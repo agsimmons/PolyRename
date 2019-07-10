@@ -1,4 +1,5 @@
-import taglib
+#import taglib
+import pytag
 
 from polyrename.transformation.transformation import Transformation
 from polyrename.transformation.utils.path_utils import insert_text_before_extension
@@ -21,9 +22,9 @@ class MusicTagsTransformation(Transformation):
     }
 
     format_map = {
-        '%t': 'TITLE',
-        '%n': 'TRACKNUMBER',
-        '%a': 'ARTIST',
+        '%t': 'title',
+        '%n': 'tracknumber',
+        '%a': 'artist',
     }
 
     forbidden_characters = [
@@ -46,6 +47,8 @@ class MusicTagsTransformation(Transformation):
         for character in self.forbidden_characters:
             tag = tag.replace(character, '')
 
+        tag = tag.replace('\x00', '')
+
         return tag
 
     def resolve(self):
@@ -55,7 +58,7 @@ class MusicTagsTransformation(Transformation):
 
             # Skip if not a supported music file
             try:
-                music_file = taglib.File(str(file))
+                music_file = pytag.Audio(str(file))
             except:
                 return_sequence.append(file)
                 continue
@@ -64,8 +67,9 @@ class MusicTagsTransformation(Transformation):
             for formatter, replacement in self.format_map.items():
 
                 try:
-                    tag_value = music_file.tags[replacement][0]
-                except KeyError:
+                    tag_value = music_file.get_tags()[replacement]
+                except KeyError as e:
+                    print(e)
                     formatted_string = formatted_string.replace(formatter, '')
                     continue
 
