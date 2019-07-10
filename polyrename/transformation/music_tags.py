@@ -1,4 +1,3 @@
-#import taglib
 import pytag
 
 from polyrename.transformation.transformation import Transformation
