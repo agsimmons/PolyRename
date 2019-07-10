@@ -1,7 +1,7 @@
 import sys
 
 from PySide2.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QListView, QWidget, QTextEdit, \
-    QListWidget, QDesktopWidget, QGridLayout, QGroupBox, QPushButton, QFileDialog, QAction
+    QListWidget, QDesktopWidget, QGridLayout, QGroupBox, QPushButton, QFileDialog, QAction, QAbstractItemView
 from PySide2.QtGui import QStandardItem, QStandardItemModel
 
 from polyrename.file_sequence import FileSequence
@@ -58,6 +58,7 @@ class MainWindow(QMainWindow):
         file_picker_group_layout = QVBoxLayout()
         file_picker_group.setLayout(file_picker_group_layout)
         self.file_picker = QListView()
+        self.file_picker.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.file_model = QStandardItemModel()
         file_picker_group.layout().addWidget(self.file_picker)
         select_files = QPushButton("Select Files")
