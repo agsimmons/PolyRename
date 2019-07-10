@@ -1,9 +1,5 @@
 dist: xenial  # required for Python >= 3.7
 
-before_install:
-  - sudo apt-get update
-  - sudo apt-get install -y gcc
-
 language: python
 python:
   - "3.5"
