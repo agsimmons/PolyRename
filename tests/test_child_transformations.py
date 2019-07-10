@@ -100,3 +100,6 @@ def test_regex_replace():
 
     transformation = regex_replace.RegexReplaceTransformation('[_w]', 'HelloWorld')
     assert transformation.resolve(TEST_SEQUENCE_01) == [Path('/home/test/example.py'), Path('fileHelloWorldHelloWorldithoutHelloWorldextension'), Path('relative.jpg'), Path('relative/path/extremeHelloWorldextreme04.tar.gz')]
+
+# TODO: Implement Test
+# def test_music_transformation():
