@@ -56,3 +56,6 @@ class SequenceTransformation(Transformation):
             sequence_value += self.step
 
         return return_sequence
+
+    def __repr__(self):
+        return "SequenceTransformation({}, {}, '{}', {})".format(self.start, self.step, self.pad_char, self.pad_len)

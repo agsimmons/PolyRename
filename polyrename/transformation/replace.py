@@ -37,3 +37,6 @@ class ReplaceTransformation(Transformation):
             return_sequence.append(file)
 
         return return_sequence
+
+    def __repr__(self):
+        return "ReplaceTransformation('{}'. '{}')".format(self.match, self.replace)

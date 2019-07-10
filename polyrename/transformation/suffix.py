@@ -28,3 +28,6 @@ class SuffixTransformation(Transformation):
             return_sequence.append(file_path)
 
         return return_sequence
+
+    def __repr__(self):
+        return "SuffixTransformation({})".format(self.text)

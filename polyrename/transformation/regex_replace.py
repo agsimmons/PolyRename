@@ -39,3 +39,6 @@ class RegexReplaceTransformation(Transformation):
             return_sequence.append(file)
 
         return return_sequence
+
+    def __repr__(self):
+        return "RegexReplaceTransformation('{}', '{}'".format(self.match, self.replace)
