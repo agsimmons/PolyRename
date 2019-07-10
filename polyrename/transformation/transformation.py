@@ -1,6 +1,6 @@
 class Transformation:
-    def __init__(self, file_sequence):
-        self.file_sequence = file_sequence
+    def __init__(self):
+        raise NotImplementedError
 
-    def resolve(self):
+    def resolve(self, file_sequence):
         raise NotImplementedError

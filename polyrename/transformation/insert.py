@@ -24,14 +24,13 @@ class InsertTransformation(Transformation):
         ]
     }
 
-    def __init__(self, file_sequence, text, position):
-        super().__init__(file_sequence)
+    def __init__(self, text, position):
         self.text = text
         self.position = position
 
-    def resolve(self):
+    def resolve(self, file_sequence):
         return_sequence = []
-        for file in self.file_sequence:
+        for file in file_sequence:
 
             if len(file.stem) < self.position:
                 file = insert_text_before_extension(file, self.text)

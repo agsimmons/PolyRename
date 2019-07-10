@@ -24,14 +24,13 @@ class ReplaceTransformation(Transformation):
         ]
     }
 
-    def __init__(self, file_sequence, match, replace):
-        super().__init__(file_sequence)
+    def __init__(self, match, replace):
         self.match = match
         self.replace = replace
 
-    def resolve(self):
+    def resolve(self, file_sequence):
         return_sequence = []
-        for file in self.file_sequence:
+        for file in file_sequence:
 
             file = file.parent / (file.stem.replace(self.match, self.replace) + file.suffix)
 

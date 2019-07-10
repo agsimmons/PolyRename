@@ -17,13 +17,12 @@ class PrefixTransformation(Transformation):
         ]
     }
 
-    def __init__(self, file_sequence, text):
-        super().__init__(file_sequence)
+    def __init__(self, text):
         self.text = text
 
-    def resolve(self):
+    def resolve(self, file_sequence):
         return_sequence = []
-        for file in self.file_sequence:
+        for file in file_sequence:
             file_name = self.text + file.name
             file_path = file.parent / file_name
             return_sequence.append(file_path)
