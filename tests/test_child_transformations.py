@@ -2,9 +2,7 @@ import datetime
 from pathlib import Path
 
 from polyrename.transformation import prefix, suffix, date_time, sequence, current_datetime, insert, remove_range, replace_extension, replace, regex_replace
-
-
-TEST_SEQUENCE_01 = [Path('/home/test/example.py'), Path('file_without_extension'), Path('relative.jpg'), Path('relative/path/extreme_extreme04.tar.gz')]
+from tests import TEST_SEQUENCE_01
 
 
 def test_prefix():
