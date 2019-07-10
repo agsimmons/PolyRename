@@ -48,7 +48,7 @@ class MainWindow(QMainWindow):
         file_picker_group_layout = QVBoxLayout()
         file_picker_group.setLayout(file_picker_group_layout)
         self.file_picker = QListView()
-        self.file_model = QStandardItemModel(self.file_picker)
+        self.file_model = QStandardItemModel()
         file_picker_group.layout().addWidget(self.file_picker)
         select_files = QPushButton("Select Files")
         select_files.clicked.connect(self.select_files_listener)
