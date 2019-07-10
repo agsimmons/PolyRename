@@ -32,18 +32,28 @@ class MainWindow(QMainWindow):
         self.move(qr.topLeft())
 
     def init_layout(self):
-        grid_layout = QGridLayout()
-        grid_layout.setSpacing(10)
+        self.grid_layout = QGridLayout()
+        self.grid_layout.setSpacing(10)
 
-        # Pipeline Editor
+        # Init each quadrant
+        self.pipeline_editor_layout()
+        self.transformation_library_layout()
+        self.file_picker_layout()
+        self.transformation_configuration_layout()
+
+        central_widget = QWidget()
+        central_widget.setLayout(self.grid_layout)
+        self.setCentralWidget(central_widget)
+
+    def pipeline_editor_layout(self):
         pipeline_editor = QGroupBox('Pipeline Editor')
-        grid_layout.addWidget(pipeline_editor, 0, 0)
+        self.grid_layout.addWidget(pipeline_editor, 0, 0)
 
-        # Transformation Library
+    def transformation_library_layout(self):
         transformation_library = QGroupBox('Transformation Library')
-        grid_layout.addWidget(transformation_library, 1, 0)
+        self.grid_layout.addWidget(transformation_library, 1, 0)
 
-        # File Picker
+    def file_picker_layout(self):
         file_picker_group = QGroupBox('File Picker')
         file_picker_group_layout = QVBoxLayout()
         file_picker_group.setLayout(file_picker_group_layout)
@@ -53,15 +63,11 @@ class MainWindow(QMainWindow):
         select_files = QPushButton("Select Files")
         select_files.clicked.connect(self.select_files_listener)
         file_picker_group.layout().addWidget(select_files)
-        grid_layout.addWidget(file_picker_group, 0, 1)
+        self.grid_layout.addWidget(file_picker_group, 0, 1)
 
-        # Transformation Configuration
+    def transformation_configuration_layout(self):
         transformation_config = QGroupBox('Transformation Config')
-        grid_layout.addWidget(transformation_config, 1, 1)
-
-        central_widget = QWidget()
-        central_widget.setLayout(grid_layout)
-        self.setCentralWidget(central_widget)
+        self.grid_layout.addWidget(transformation_config, 1, 1)
 
     def init_menuBar(self):
         menuBar = self.menuBar()
