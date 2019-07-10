@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from PyQt5.QtCore import QAbstractListModel
+from PySide2.QtCore import QAbstractListModel
 
 
 class FileSequence(QAbstractListModel):
