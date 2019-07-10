@@ -1,4 +1,3 @@
-#import taglib
 import pytag
 
 from polyrename.transformation.transformation import Transformation
@@ -39,8 +38,7 @@ class MusicTagsTransformation(Transformation):
         r'*',
     ]
 
-    def __init__(self, file_sequence, format_string):
-        super().__init__(file_sequence)
+    def __init__(self, format_string):
         self.format_string = format_string
 
     def sanitize_tag(self, tag):
@@ -51,10 +49,10 @@ class MusicTagsTransformation(Transformation):
 
         return tag
 
-    def resolve(self):
+    def resolve(self, file_sequence):
         return_sequence = []
 
-        for file in self.file_sequence:
+        for file in file_sequence:
 
             # Skip if not a supported music file
             try:
