@@ -1,7 +1,8 @@
 import sys
 
 from PySide2.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QListView, QWidget, QTextEdit, \
-    QListWidget, QDesktopWidget, QGridLayout, QGroupBox, QPushButton, QFileDialog, QAction, QAbstractItemView, QLabel
+    QListWidget, QDesktopWidget, QGridLayout, QGroupBox, QPushButton, QFileDialog, QAction, QAbstractItemView, QLabel, \
+    QScrollArea, QFormLayout
 from PySide2.QtGui import QStandardItem, QStandardItemModel
 
 from polyrename.file_sequence import FileSequence
@@ -95,7 +96,7 @@ class MainWindow(QMainWindow):
         self.grid_layout.addWidget(pipeline_editor, 0, 0)
 
     def file_picker_layout(self):
-        """Initialize file picker interface"""
+        """Initialize File Picker interface"""
 
         file_picker_group = QGroupBox('File Picker')
         file_picker_group_layout = QVBoxLayout()
@@ -111,6 +112,8 @@ class MainWindow(QMainWindow):
         self.grid_layout.addWidget(file_picker_group, 0, 1)
 
     def transformation_library_layout(self):
+        """Initialize Transformation Library interface"""
+
         transformation_library_group = QGroupBox('Transformation Library')
 
         transformation_library_group_layout = QVBoxLayout()
