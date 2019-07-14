@@ -1,10 +1,11 @@
 import sys
 
 from PySide2.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QListView, QWidget, QTextEdit, \
-    QListWidget, QDesktopWidget, QGridLayout, QGroupBox, QPushButton, QFileDialog, QAction, QAbstractItemView
+    QListWidget, QDesktopWidget, QGridLayout, QGroupBox, QPushButton, QFileDialog, QAction, QAbstractItemView, QLabel
 from PySide2.QtGui import QStandardItem, QStandardItemModel
 
 from polyrename.file_sequence import FileSequence
+from polyrename.transformation import TRANSFORMATIONS, TRANSFORMATIONS_BY_NAME
 
 
 class MainWindow(QMainWindow):
@@ -50,8 +51,31 @@ class MainWindow(QMainWindow):
         self.grid_layout.addWidget(pipeline_editor, 0, 0)
 
     def transformation_library_layout(self):
-        transformation_library = QGroupBox('Transformation Library')
-        self.grid_layout.addWidget(transformation_library, 1, 0)
+        transformation_library_group = QGroupBox('Transformation Library')
+
+        transformation_library_group_layout = QVBoxLayout()
+        transformation_library_group.setLayout(transformation_library_group_layout)
+
+        self.transformation_library = QListView()
+        self.transformation_library.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+        self.transformation_library_model = QStandardItemModel()
+        self.transformation_library.setModel(self.transformation_library_model)
+        self.transformation_library.clicked.connect(self.configure_transformation)
+
+        for transformation in TRANSFORMATIONS:
+            transformation_name = transformation.schema['metadata']['name']
+            transformation_description = transformation.schema['metadata']['description']
+
+            transformation_element = QStandardItem()
+            transformation_element.setText(transformation_name)
+            transformation_element.setToolTip(transformation_description)
+
+            self.transformation_library_model.appendRow(transformation_element)
+
+        transformation_library_group.layout().addWidget(self.transformation_library)
+
+        self.grid_layout.addWidget(transformation_library_group, 1, 0)
 
     def file_picker_layout(self):
         file_picker_group = QGroupBox('File Picker')

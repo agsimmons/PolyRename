@@ -3,3 +3,5 @@ from polyrename.transformation import transformation, date_time, prefix, suffix,
 
 # List of all available transformations
 TRANSFORMATIONS = transformation.Transformation.__subclasses__()
+
+TRANSFORMATIONS_BY_NAME = {t.schema['metadata']['name']: t for t in TRANSFORMATIONS}
