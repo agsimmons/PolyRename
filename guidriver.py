@@ -7,6 +7,7 @@ from PySide2.QtGui import QStandardItem, QStandardItemModel
 
 from polyrename.file_sequence import FileSequence
 from polyrename.transformation import TRANSFORMATIONS, TRANSFORMATIONS_BY_NAME
+from polyrename.transformation.pipeline import Pipeline
 
 
 class MainWindow(QMainWindow):
@@ -14,6 +15,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.file_sequence = FileSequence([])
+        self.pipeline = Pipeline()
 
         self.init_window()
         self.init_menu_bar()
