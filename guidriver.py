@@ -144,11 +144,17 @@ class MainWindow(QMainWindow):
         """Initialize layout of Transformation Configuration interface"""
 
         transformation_config_group = QGroupBox('Transformation Config')
-        self.transformation_config_group_layout = QVBoxLayout()
-        transformation_config_group.setLayout(self.transformation_config_group_layout)
+        transformation_config_group_layout = QVBoxLayout()
+        transformation_config_group.setLayout(transformation_config_group_layout)
 
-        self.config_widget = QWidget()
-        self.transformation_config_group_layout.addWidget(self.config_widget)
+        scroll_area = QScrollArea()
+        scroll_area.setWidgetResizable(True)
+
+        form_widget = QWidget()
+        self.config_form = QFormLayout()
+        form_widget.setLayout(self.config_form)
+        scroll_area.setWidget(form_widget)
+        transformation_config_group_layout.addWidget(scroll_area)
 
         self.grid_layout.addWidget(transformation_config_group, 1, 1)
 
@@ -175,29 +181,18 @@ class MainWindow(QMainWindow):
         selected_transformation = TRANSFORMATIONS_BY_NAME[self.transformation_library_model.data(x)]
         print('Selected transformation: {}'.format(selected_transformation))
 
-        # Initialize container QWidget for configuration options
-        config_container = QWidget()
-        config_container_layout = QVBoxLayout()
-        config_container.setLayout(config_container_layout)
+        # Destroy existing form rows
+        for i in reversed(range(self.config_form.count())):
+            self.config_form.itemAt(i).widget().setParent(None)
 
         # Generate configuration for selected Transformation
         for option in selected_transformation.schema['options']:
-            option_widget = QWidget()
-            option_layout = QHBoxLayout()
-            option_widget.setLayout(option_layout)
 
             label = QLabel(option['name'])
+            label.setToolTip(option['description'])
             field = QTextEdit('Testing')
 
-            option_layout.addWidget(label)
-            option_layout.addWidget(field)
-
-            config_container_layout.addWidget(option_widget)
-
-        # Replace previous configuration options with new options
-        self.transformation_config_group_layout.removeWidget(self.config_widget)
-        self.config_widget = config_container
-        self.transformation_config_group_layout.addWidget(self.config_widget)
+            self.config_form.addRow(label, field)
 
 
 def main():
