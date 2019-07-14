@@ -6,9 +6,12 @@ python:
   - "3.6"
   - "3.7"
 
+install:
+    - export DISPLAY=:99.0
+
 addons:
   apt:
     packages:
-      - python3-pyqt5
+      - python3-pyside
 
 script: pytest -s
