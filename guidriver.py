@@ -134,7 +134,7 @@ class MainWindow(QMainWindow):
     def select_files_listener(self):
         files = QFileDialog.getOpenFileNames(self, 'Select Files', '.')
         self.file_sequence = FileSequence(files[0])
-        print(self.file_sequence)
+        print('Current file sequence: {}'.format(self.file_sequence))
 
         # Update File Picker list from files[]
         self.file_model.clear()
