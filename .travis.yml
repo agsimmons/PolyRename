@@ -9,6 +9,7 @@ python:
 install:
     - pip install -r requirements.txt
     - export DISPLAY=:99.0
+    - export QT_QPA_PLATFORM=minimal
 
 addons:
   apt:
