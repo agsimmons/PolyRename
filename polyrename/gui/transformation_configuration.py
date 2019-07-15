@@ -75,6 +75,11 @@ class TransformationConfiguration(QGroupBox):
             self.config_form.addRow(label, field)
 
     def add_configured_transformation_to_pipeline(self):
+
+        # Return if a transformation hasn't been selected yet
+        if self.selected_transformation is None:
+            return
+
         # Get form options
         form_options = []
         for i in range(self.config_form.count()):
@@ -102,5 +107,7 @@ class TransformationConfiguration(QGroupBox):
         configured_transformation = self.selected_transformation(*form_options)
 
         print("Configured Transformation: {}".format(configured_transformation))
+
+        self._clear_form()
 
         self.pipeline_editor.pipeline.add_transformation(configured_transformation)
