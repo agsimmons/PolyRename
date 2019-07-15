@@ -6,7 +6,7 @@ from PySide2.QtWidgets import (
     QLabel,
     QTextEdit,
 )
-from PySide2.QtGui import QStandardItemModel, QStandardItem
+from PySide2.QtGui import QStandardItemModel, QStandardItem, QFontMetrics
 
 from polyrename.transformation import TRANSFORMATIONS, TRANSFORMATIONS_BY_NAME
 
@@ -19,7 +19,12 @@ class TransformationLibrary(QGroupBox):
 
         self.setLayout(QVBoxLayout())
 
+        self._initialize_text()
         self._initialize_library()
+
+    def _initialize_text(self):
+        metrics = QFontMetrics(QTextEdit().font())
+        self.text_line_height = metrics.lineSpacing() * 2
 
     def _initialize_library(self):
         self.transformation_list = QListView()
@@ -62,6 +67,8 @@ class TransformationLibrary(QGroupBox):
 
             label = QLabel(option["name"])
             label.setToolTip(option["description"])
+
             field = QTextEdit("Testing")
+            field.setFixedHeight(self.text_line_height)
 
             self.config_form.addRow(label, field)
