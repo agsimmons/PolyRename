@@ -6,14 +6,11 @@ from polyrename.gui import (
     TransformationConfiguration,
     PipelineEditor,
 )
-from polyrename.transformation.pipeline import Pipeline
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-
-        self.pipeline = Pipeline()
 
         self.init_window()
         self.init_layout()

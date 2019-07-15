@@ -1,5 +1,7 @@
 from PySide2.QtWidgets import QGroupBox, QVBoxLayout, QPushButton, QListView
 
+from polyrename.transformation.pipeline import Pipeline
+
 
 class PipelineEditor(QGroupBox):
     def __init__(self):
@@ -7,6 +9,7 @@ class PipelineEditor(QGroupBox):
 
         self.setLayout(QVBoxLayout())
 
+        self.pipeline = Pipeline()
         self.pipelineView = QListView()
 
         self.layout().addWidget(self.pipelineView)
@@ -18,3 +21,5 @@ class PipelineEditor(QGroupBox):
         self.layout().addWidget(self.moveUpButton)
         self.layout().addWidget(self.moveDownButton)
         self.layout().addWidget(self.applyButton)
+
+        model = self.pipelineView.model()
