@@ -17,6 +17,22 @@ class MainWindow(QMainWindow):
 
         self.init_window()
         self.init_layout()
+
+        # Initialize each quadrant
+        self.pipeline_editor = PipelineEditor()
+        self.grid_layout.addWidget(self.pipeline_editor, 0, 0)
+
+        self.file_picker = FilePicker()
+        self.grid_layout.addWidget(self.file_picker, 0, 1)
+
+        self.transformation_configuration = TransformationConfiguration()
+        self.grid_layout.addWidget(self.transformation_configuration, 1, 1)
+
+        self.transformation_library = TransformationLibrary(
+            self.transformation_configuration.config_form
+        )
+        self.grid_layout.addWidget(self.transformation_library, 1, 0)
+
         self.init_menu_bar()
 
         self.show()
@@ -37,63 +53,48 @@ class MainWindow(QMainWindow):
     def init_menu_bar(self):
         """Initialize Menu Bar and contained menus"""
 
-        menuBar = self.menuBar()
-        fileMenu = menuBar.addMenu("&File")
-        editMenu = menuBar.addMenu("&Edit")
-        helpMenu = menuBar.addMenu("&Help")
+        menu_bar = self.menuBar()
+        file_menu = menu_bar.addMenu("&File")
+        edit_menu = menu_bar.addMenu("&Edit")
+        help_menu = menu_bar.addMenu("&Help")
 
-        selectFileAction = QAction("S&elect Files", self)
-        selectFileAction.setShortcut("Ctrl+e")
-        selectFileAction.setStatusTip("Select Files")
-        selectFileAction.triggered.connect(self.file_picker._select_files_listener)
-        fileMenu.addAction(selectFileAction)
+        select_file_action = QAction("S&elect Files", self)
+        select_file_action.setShortcut("Ctrl+e")
+        select_file_action.setStatusTip("Select Files")
+        select_file_action.triggered.connect(self.file_picker._select_files_listener)
+        file_menu.addAction(select_file_action)
 
-        quitAction = QAction("&Quit", self)
-        quitAction.setShortcut("Ctrl+q")
-        quitAction.setStatusTip("Quit PolyRename")
-        quitAction.triggered.connect(self.close)
-        fileMenu.addAction(quitAction)
+        quit_action = QAction("&Quit", self)
+        quit_action.setShortcut("Ctrl+q")
+        quit_action.setStatusTip("Quit PolyRename")
+        quit_action.triggered.connect(self.close)
+        file_menu.addAction(quit_action)
 
-        undoAction = QAction("&Undo", self)
-        undoAction.setShortcut("Ctrl+Z")
-        undoAction.setStatusTip("Undo last action")
-        editMenu.addAction(undoAction)
+        undo_action = QAction("&Undo", self)
+        undo_action.setShortcut("Ctrl+Z")
+        undo_action.setStatusTip("Undo last action")
+        edit_menu.addAction(undo_action)
 
-        redoAction = QAction("&Redo", self)
-        redoAction.setShortcut("Ctrl+Shift+Z")
-        redoAction.setStatusTip("Redo last action")
-        editMenu.addAction(redoAction)
+        redo_action = QAction("&Redo", self)
+        redo_action.setShortcut("Ctrl+Shift+Z")
+        redo_action.setStatusTip("Redo last action")
+        edit_menu.addAction(redo_action)
 
-        aboutAction = QAction("&About", self)
-        aboutAction.setShortcut("Ctrl+?")
-        aboutAction.setStatusTip("About PolyRename")
-        helpMenu.addAction(aboutAction)
+        about_action = QAction("&About", self)
+        about_action.setShortcut("Ctrl+?")
+        about_action.setStatusTip("About PolyRename")
+        help_menu.addAction(about_action)
 
         # Initialize Status Bar
-        statusBar = self.statusBar()
-        statusBar.showMessage("Ready")
+        status_bar = self.statusBar()
+        status_bar.showMessage("Ready")
 
     def init_layout(self):
-        """Initialize layout of main window, including the four main sections of the UI"""
+        """Initialize base layout of main windows"""
 
-        grid_layout = QGridLayout()
-        grid_layout.setSpacing(10)
-
-        # Initialize each quadrant
-        self.pipeline_editor = PipelineEditor()
-        grid_layout.addWidget(self.pipeline_editor, 0, 0)
-
-        self.file_picker = FilePicker()
-        grid_layout.addWidget(self.file_picker, 0, 1)
-
-        self.transformation_configuration = TransformationConfiguration()
-        grid_layout.addWidget(self.transformation_configuration, 1, 1)
-
-        self.transformation_library = TransformationLibrary(
-            self.transformation_configuration.config_form
-        )
-        grid_layout.addWidget(self.transformation_library, 1, 0)
+        self.grid_layout = QGridLayout()
+        self.grid_layout.setSpacing(10)
 
         central_widget = QWidget()
-        central_widget.setLayout(grid_layout)
+        central_widget.setLayout(self.grid_layout)
         self.setCentralWidget(central_widget)
