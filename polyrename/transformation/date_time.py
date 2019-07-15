@@ -90,3 +90,6 @@ class DateTimeTransformation(Transformation):
             return_sequence.append(file_path)
 
         return return_sequence
+
+    def __repr__(self):
+        return "DateTimeTransformation({}, {}, {}, {}, {}, {}, {}, '{}')".format(self.year, self.month, self.day, self.hour, self.minute, self.second, self.microsecond, self.format_string)

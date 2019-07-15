@@ -6,4 +6,14 @@ python:
   - "3.6"
   - "3.7"
 
-script: pytest
+install:
+    - pip install -r requirements.txt
+    - export DISPLAY=:99.0
+    - export QT_QPA_PLATFORM=minimal
+
+addons:
+  apt:
+    packages:
+      - python3-pyside
+
+script: pytest -s

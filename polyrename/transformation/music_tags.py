@@ -78,3 +78,6 @@ class MusicTagsTransformation(Transformation):
             return_sequence.append(insert_text_before_extension(file, formatted_string))
 
         return return_sequence
+
+    def __repr__(self):
+        return "MusicTagsTransformation('{}')".format(self.format_string)

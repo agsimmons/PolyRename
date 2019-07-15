@@ -44,3 +44,6 @@ class RemoveRangeTransformation(Transformation):
             return_sequence.append(file)
 
         return return_sequence
+
+    def __repr__(self):
+        return "RemoveRangeTransformation({}, {})".format(self.start, self.stop)

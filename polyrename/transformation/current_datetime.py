@@ -33,3 +33,6 @@ class CurrentDateTimeTransformation(Transformation):
             return_sequence.append(file_path)
 
         return return_sequence
+
+    def __repr__(self):
+        return "CurrentDateTimeTransformation('{}')".format(self.format_string)

@@ -42,3 +42,6 @@ class InsertTransformation(Transformation):
             return_sequence.append(file)
 
         return return_sequence
+
+    def __repr__(self):
+        return "InsertTransformation('{}', {})".format(self.text, self.position)
