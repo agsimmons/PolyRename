@@ -29,7 +29,7 @@ class MainWindow(QMainWindow):
         self.grid_layout.addWidget(self.transformation_configuration, 1, 1)
 
         self.transformation_library = TransformationLibrary(
-            self.transformation_configuration.config_form
+            self.transformation_configuration
         )
         self.grid_layout.addWidget(self.transformation_library, 1, 0)
 
