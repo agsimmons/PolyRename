@@ -2,7 +2,7 @@ import sys
 
 from PySide2.QtWidgets import QApplication
 
-from polyrename.gui.main_window import MainWindow
+from polyrename.gui import MainWindow
 
 
 def main():
