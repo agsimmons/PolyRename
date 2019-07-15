@@ -1,6 +1,11 @@
 from PySide2.QtWidgets import QMainWindow, QWidget, QDesktopWidget, QGridLayout, QAction
 
-from polyrename.gui import FilePicker, TransformationLibrary, TransformationConfiguration, PipelineEditor
+from polyrename.gui import (
+    FilePicker,
+    TransformationLibrary,
+    TransformationConfiguration,
+    PipelineEditor,
+)
 from polyrename.transformation.pipeline import Pipeline
 
 
