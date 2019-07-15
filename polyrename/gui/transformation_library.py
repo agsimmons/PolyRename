@@ -3,8 +3,6 @@ from PySide2.QtWidgets import (
     QVBoxLayout,
     QListView,
     QAbstractItemView,
-    QLabel,
-    QTextEdit,
 )
 from PySide2.QtGui import QStandardItemModel, QStandardItem
 
@@ -12,10 +10,10 @@ from polyrename.transformation import TRANSFORMATIONS, TRANSFORMATIONS_BY_NAME
 
 
 class TransformationLibrary(QGroupBox):
-    def __init__(self, config_form):
+    def __init__(self, transformation_confirmation):
         super().__init__("Transformation Library")
 
-        self.config_form = config_form
+        self.transformation_configuration = transformation_confirmation
 
         self.setLayout(QVBoxLayout())
 
@@ -44,24 +42,10 @@ class TransformationLibrary(QGroupBox):
             self.transformation_list.model().appendRow(transformation_element)
 
     def configure_transformation(self, x):
-        """Upon selection of a Transformation in the Transformation Library, initialize the Transformation Configuration
-        interface
-        """
+        """Resolve selected transformation and pass it to transformation_configuration to display config"""
 
         model = self.transformation_list.model()
-
         selected_transformation = TRANSFORMATIONS_BY_NAME[model.data(x)]
         print("Selected transformation: {}".format(selected_transformation))
 
-        # Destroy existing form rows
-        for i in reversed(range(self.config_form.count())):
-            self.config_form.itemAt(i).widget().setParent(None)
-
-        # Generate configuration for selected Transformation
-        for option in selected_transformation.schema["options"]:
-
-            label = QLabel(option["name"])
-            label.setToolTip(option["description"])
-            field = QTextEdit("Testing")
-
-            self.config_form.addRow(label, field)
+        self.transformation_configuration.swap_configuration(selected_transformation)
