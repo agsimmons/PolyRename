@@ -25,11 +25,11 @@ class MainWindow(QMainWindow):
         self.file_picker = FilePicker()
         self.grid_layout.addWidget(self.file_picker, 0, 1)
 
-        self.transformation_configuration = TransformationConfiguration()
+        self.transformation_configuration = TransformationConfiguration(self.pipeline_editor)
         self.grid_layout.addWidget(self.transformation_configuration, 1, 1)
 
         self.transformation_library = TransformationLibrary(
-            self.transformation_configuration.config_form
+            self.transformation_configuration
         )
         self.grid_layout.addWidget(self.transformation_library, 1, 0)
 
