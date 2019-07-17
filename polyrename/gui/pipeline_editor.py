@@ -1,4 +1,5 @@
 from PySide2.QtWidgets import QGroupBox, QVBoxLayout, QPushButton, QListView
+from PySide2.QtGui import QStandardItem, QStandardItemModel
 
 from polyrename.transformation.pipeline import Pipeline
 
@@ -12,6 +13,8 @@ class PipelineEditor(QGroupBox):
         self.pipeline = Pipeline()
         self.pipelineView = QListView()
 
+        self.pipelineView.setModel(QStandardItemModel())
+
         self.layout().addWidget(self.pipelineView)
 
         self.moveUpButton = QPushButton("Move Up")
@@ -23,20 +26,22 @@ class PipelineEditor(QGroupBox):
         self.applyButton = QPushButton("Apply")
         self.applyButton.clicked.connect(self._apply_pipeline_listener)
 
-        #TODO remove
-        self.refreshButton = QPushButton("refresh")
-        self.refreshButton.clicked.connect(self._update_pipeline_view)
-
         self.layout().addWidget(self.moveUpButton)
         self.layout().addWidget(self.moveDownButton)
         self.layout().addWidget(self.applyButton)
-        self.layout().addWidget(self.refreshButton)
+        self.layout().addWidget(self.modifyButton)
 
         self._update_pipeline_view()
 
-
     def _update_pipeline_view(self):
-        self.pipelineView.setModel(self.pipeline)
+        print(self.pipeline)
+        model = self.pipelineView.model()
+        model.clear()
+
+        for t in range(self.pipeline.rowCount()):
+            item = QStandardItem()
+            item.setText(repr(self.pipeline.data(t)))
+            model.appendRow(item)
 
     def _modify_transformation_listener(self):
         #TODO
@@ -48,9 +53,9 @@ class PipelineEditor(QGroupBox):
         pass
 
     def _move_up_listener(self):
-        self.pipeline.move_transformation_up(1)
+        self.pipeline.move_transformation_up(self.pipelineView.selectedIndexes()[0].row())
         self._update_pipeline_view()
 
     def _move_down_listener(self):
-        self.pipeline.move_transformation_down(0)
+        self.pipeline.move_transformation_down(self.pipelineView.selectedIndexes()[0].row())
         self._update_pipeline_view()
