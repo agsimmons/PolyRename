@@ -16,11 +16,11 @@ class MainWindow(QMainWindow):
         self.init_layout()
 
         # Initialize each quadrant
-        self.pipeline_editor = PipelineEditor()
-        self.grid_layout.addWidget(self.pipeline_editor, 0, 0)
-
         self.file_picker = FilePicker()
         self.grid_layout.addWidget(self.file_picker, 0, 1)
+
+        self.pipeline_editor = PipelineEditor(self.file_picker)
+        self.grid_layout.addWidget(self.pipeline_editor, 0, 0)
 
         self.transformation_configuration = TransformationConfiguration(self.pipeline_editor)
         self.grid_layout.addWidget(self.transformation_configuration, 1, 1)

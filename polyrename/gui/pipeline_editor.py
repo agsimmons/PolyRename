@@ -1,14 +1,17 @@
 from PySide2.QtWidgets import QGroupBox, QVBoxLayout, QPushButton, QListView
 from PySide2.QtGui import QStandardItem, QStandardItemModel
+from PySide2.QtCore import QItemSelectionModel, QModelIndex
 
 from polyrename.transformation.pipeline import Pipeline
 
 
 class PipelineEditor(QGroupBox):
-    def __init__(self):
+    def __init__(self, file_picker):
         super().__init__("Pipeline Editor")
 
         self.setLayout(QVBoxLayout())
+
+        self.file_picker = file_picker
 
         self.pipeline = Pipeline()
         self.pipelineView = QListView()
@@ -49,13 +52,14 @@ class PipelineEditor(QGroupBox):
 
     def _apply_pipeline_listener(self):
         #TODO
-        #self.pipeline.resolve()
-        pass
+        #print(self.pipeline.resolve(self.file_picker.file_sequence))
 
     def _move_up_listener(self):
-        self.pipeline.move_transformation_up(self.pipelineView.selectedIndexes()[0].row())
+        to_move = self.pipelineView.selectionModel().selectedIndexes()[0].row()
+        self.pipeline.move_transformation_up(to_move)
         self._update_pipeline_view()
 
     def _move_down_listener(self):
-        self.pipeline.move_transformation_down(self.pipelineView.selectedIndexes()[0].row())
+        to_move = self.pipelineView.selectionModel().selectedIndexes()[0].row()
+        self.pipeline.move_transformation_down(to_move)
         self._update_pipeline_view()
