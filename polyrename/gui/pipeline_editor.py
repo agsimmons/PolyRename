@@ -32,11 +32,13 @@ class PipelineEditor(QGroupBox):
         button_rows = QWidget()
         self.layout().addWidget(button_rows)
         button_rows_layout = QVBoxLayout(button_rows)
+        button_rows_layout.setContentsMargins(0, 0, 0, 0)
 
         # === ROW 1 ===
         row_1 = QWidget()
         button_rows_layout.addWidget(row_1)
         row_1_layout = QHBoxLayout(row_1)
+        row_1_layout.setContentsMargins(0, 0, 0, 0)
 
         self.moveUpButton = QPushButton("Move Up")
         row_1_layout.addWidget(self.moveUpButton)
@@ -54,6 +56,7 @@ class PipelineEditor(QGroupBox):
         row_2 = QWidget()
         button_rows_layout.addWidget(row_2)
         row_2_layout = QHBoxLayout(row_2)
+        row_2_layout.setContentsMargins(0, 0, 0, 0)
 
         self.applyButton = QPushButton("Apply Pipeline")
         row_2_layout.addWidget(self.applyButton)
