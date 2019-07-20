@@ -4,6 +4,7 @@ from PySide2.QtWidgets import QGroupBox, QVBoxLayout, QPushButton, QListView
 from PySide2.QtGui import QStandardItem, QStandardItemModel
 from PySide2.QtCore import QItemSelectionModel, QModelIndex
 
+from polyrename.file_sequence import FileSequence
 from polyrename.transformation.pipeline import Pipeline
 
 
@@ -60,6 +61,8 @@ class PipelineEditor(QGroupBox):
 
         for rename in before_after:
             shutil.move(rename[0], rename[1])
+
+        # TODO: Either clear file sequence or reflect changes in file picker
 
     def _move_up_listener(self):
         to_move = self.pipelineView.selectionModel().selectedIndexes()[0].row()
