@@ -27,15 +27,15 @@ class PipelineEditor(QGroupBox):
         self.moveUpButton.clicked.connect(self._move_up_listener)
         self.moveDownButton = QPushButton("Move Down")
         self.moveDownButton.clicked.connect(self._move_down_listener)
-        self.modifyButton = QPushButton("Modify")
-        self.modifyButton.clicked.connect(self._modify_transformation_listener)
         self.applyButton = QPushButton("Apply")
         self.applyButton.clicked.connect(self._apply_pipeline_listener)
+        # self.modifyButton = QPushButton("Modify")
+        # self.modifyButton.clicked.connect(self._modify_transformation_listener)
 
         self.layout().addWidget(self.moveUpButton)
         self.layout().addWidget(self.moveDownButton)
         self.layout().addWidget(self.applyButton)
-        self.layout().addWidget(self.modifyButton)
+        # self.layout().addWidget(self.modifyButton)
 
         self._update_pipeline_view()
 
