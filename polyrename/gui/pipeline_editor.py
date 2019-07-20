@@ -111,5 +111,5 @@ class PipelineEditor(QGroupBox):
         if ret == int(QMessageBox.Yes):
             for rename in before_after:
                 shutil.move(*rename)
+            self.file_picker.clear_file_list()
 
-        self.file_picker.clear_file_list()
