@@ -1,6 +1,6 @@
 import shutil
 
-from PySide2.QtWidgets import QGroupBox, QVBoxLayout, QPushButton, QListView
+from PySide2.QtWidgets import QGroupBox, QVBoxLayout, QPushButton, QListView, QMessageBox
 from PySide2.QtGui import QStandardItem, QStandardItemModel
 from PySide2.QtCore import QItemSelectionModel, QModelIndex
 
@@ -57,10 +57,23 @@ class PipelineEditor(QGroupBox):
         file_sequence = self.file_picker.file_sequence.files
         transformed_sequence = self.pipeline.resolve(file_sequence)
 
-        before_after = zip(file_sequence, transformed_sequence)
+        before_after = list(zip(file_sequence, transformed_sequence))
 
+        preview_text_lines = []
         for rename in before_after:
-            shutil.move(rename[0], rename[1])
+            preview_text_lines.append(f"{rename[0].name} -> {rename[1].name}")
+        preview_text = '\n'.join(preview_text_lines)
+
+        confirmation = QMessageBox(self)
+        confirmation.setText("Are you sure you want to apply the pipeline?")
+        confirmation.setDetailedText(preview_text)
+        confirmation.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        confirmation.setDefaultButton(QMessageBox.No)
+        ret = confirmation.exec_()
+
+        if ret == int(QMessageBox.Yes):
+            for rename in before_after:
+                shutil.move(*rename)
 
         # TODO: Either clear file sequence or reflect changes in file picker
 
