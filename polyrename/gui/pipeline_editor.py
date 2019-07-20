@@ -112,4 +112,4 @@ class PipelineEditor(QGroupBox):
             for rename in before_after:
                 shutil.move(*rename)
 
-        # TODO: Either clear file sequence or reflect changes in file picker
+        self.file_picker.clear_file_list()
