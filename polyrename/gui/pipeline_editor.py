@@ -82,11 +82,13 @@ class PipelineEditor(QGroupBox):
         to_move = self.pipelineView.selectionModel().selectedIndexes()[0].row()
         self.pipeline.move_transformation_up(to_move)
         self._update_pipeline_view()
+        self.pipelineView.setCurrentIndex(self.pipelineView.model().index(to_move-1, 0))
 
     def _move_down_listener(self):
         to_move = self.pipelineView.selectionModel().selectedIndexes()[0].row()
         self.pipeline.move_transformation_down(to_move)
         self._update_pipeline_view()
+        self.pipelineView.setCurrentIndex(self.pipelineView.model().index(to_move+1, 0))
 
     def _delete_listener(self):
         to_delete = self.pipelineView.selectionModel().selectedIndexes()[0].row()
