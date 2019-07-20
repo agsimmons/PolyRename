@@ -1,8 +1,6 @@
 from PySide2.QtCore import QAbstractListModel
-#from PySide2.QtWidgets import QAbstractItemView
 
 
-#class Pipeline(QAbstractItemView):
 class Pipeline(QAbstractListModel):
     def __init__(self):
         super().__init__()
