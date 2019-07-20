@@ -113,6 +113,9 @@ class PipelineEditor(QGroupBox):
             return
 
     def _apply_pipeline_listener(self):
+        # TODO: inform the user of errors, ie empty pipeline when pressing apply
+        if self.pipeline.rowCount() < 1:
+            return
         file_sequence = self.file_picker.file_sequence.files
         transformed_sequence = self.pipeline.resolve(file_sequence)
 
