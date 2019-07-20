@@ -24,7 +24,6 @@ class PipelineEditor(QGroupBox):
 
         self.pipeline = Pipeline()
         self.pipelineView = QListView()
-
         self.pipelineView.setModel(QStandardItemModel())
 
         self.layout().addWidget(self.pipelineView)
