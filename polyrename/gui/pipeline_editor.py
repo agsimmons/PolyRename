@@ -74,7 +74,7 @@ class PipelineEditor(QGroupBox):
 
     def _modify_transformation_listener(self):
         # TODO
-        pass
+        raise NotImplementedError
 
     def _move_up_listener(self):
         to_move = self.pipelineView.selectionModel().selectedIndexes()[0].row()
