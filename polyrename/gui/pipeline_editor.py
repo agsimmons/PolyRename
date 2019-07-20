@@ -1,3 +1,5 @@
+import shutil
+
 from PySide2.QtWidgets import QGroupBox, QVBoxLayout, QPushButton, QListView
 from PySide2.QtGui import QStandardItem, QStandardItemModel
 from PySide2.QtCore import QItemSelectionModel, QModelIndex
@@ -47,12 +49,17 @@ class PipelineEditor(QGroupBox):
             model.appendRow(item)
 
     def _modify_transformation_listener(self):
-        #TODO
+        # TODO
         pass
 
     def _apply_pipeline_listener(self):
-        #TODO
-        #print(self.pipeline.resolve(self.file_picker.file_sequence))
+        file_sequence = self.file_picker.file_sequence.files
+        transformed_sequence = self.pipeline.resolve(file_sequence)
+
+        before_after = zip(file_sequence, transformed_sequence)
+
+        for rename in before_after:
+            shutil.move(rename[0], rename[1])
 
     def _move_up_listener(self):
         to_move = self.pipelineView.selectionModel().selectedIndexes()[0].row()

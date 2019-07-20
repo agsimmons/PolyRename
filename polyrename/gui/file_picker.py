@@ -17,6 +17,8 @@ class FilePicker(QGroupBox):
 
         self.setLayout(QVBoxLayout())
 
+        self.file_sequence = FileSequence([])
+
         self._initialize_file_list()
 
     def _initialize_file_list(self):
