@@ -105,6 +105,10 @@ class PipelineEditor(QGroupBox):
             to_delete = self.pipelineView.selectionModel().selectedIndexes()[0].row()
             self.pipeline.remove_transformation(to_delete)
             self._update_pipeline_view()
+            if to_delete > self.pipelineView.model().rowCount()-1:
+                self.pipelineView.setCurrentIndex(self.pipelineView.model().index(to_delete-1, 0))
+            else:
+                self.pipelineView.setCurrentIndex(self.pipelineView.model().index(to_delete, 0))
         except IndexError:
             return
 
