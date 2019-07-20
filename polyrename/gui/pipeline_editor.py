@@ -79,21 +79,34 @@ class PipelineEditor(QGroupBox):
         raise NotImplementedError
 
     def _move_up_listener(self):
-        to_move = self.pipelineView.selectionModel().selectedIndexes()[0].row()
-        self.pipeline.move_transformation_up(to_move)
-        self._update_pipeline_view()
-        self.pipelineView.setCurrentIndex(self.pipelineView.model().index(to_move-1, 0))
+        try:
+            to_move = self.pipelineView.selectionModel().selectedIndexes()[0].row()
+            if to_move < 1:
+                return
+            self.pipeline.move_transformation_up(to_move)
+            self._update_pipeline_view()
+            self.pipelineView.setCurrentIndex(self.pipelineView.model().index(to_move-1, 0))
+        except IndexError:
+            return
 
     def _move_down_listener(self):
-        to_move = self.pipelineView.selectionModel().selectedIndexes()[0].row()
-        self.pipeline.move_transformation_down(to_move)
-        self._update_pipeline_view()
-        self.pipelineView.setCurrentIndex(self.pipelineView.model().index(to_move+1, 0))
+        try:
+            to_move = self.pipelineView.selectionModel().selectedIndexes()[0].row()
+            if to_move > self.pipelineView.model().rowCount()-2:
+                return
+            self.pipeline.move_transformation_down(to_move)
+            self._update_pipeline_view()
+            self.pipelineView.setCurrentIndex(self.pipelineView.model().index(to_move+1, 0))
+        except IndexError:
+            return
 
     def _delete_listener(self):
-        to_delete = self.pipelineView.selectionModel().selectedIndexes()[0].row()
-        self.pipeline.remove_transformation(to_delete)
-        self._update_pipeline_view()
+        try:
+            to_delete = self.pipelineView.selectionModel().selectedIndexes()[0].row()
+            self.pipeline.remove_transformation(to_delete)
+            self._update_pipeline_view()
+        except IndexError:
+            return
 
     def _apply_pipeline_listener(self):
         file_sequence = self.file_picker.file_sequence.files
