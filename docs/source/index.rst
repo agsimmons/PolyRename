@@ -13,5 +13,6 @@ Contents
 .. toctree::
    :maxdepth: 2
 
+   concepts/index
    usage/index
    dev/index
