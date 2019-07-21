@@ -1,3 +1,4 @@
+import logging
 import shutil
 
 from PySide2.QtWidgets import (
@@ -65,7 +66,7 @@ class PipelineEditor(QGroupBox):
         self.update_pipeline_view()
 
     def update_pipeline_view(self):
-        print(self.pipeline)
+        logging.debug(self.pipeline)
         model = self.pipelineView.model()
         model.clear()
 

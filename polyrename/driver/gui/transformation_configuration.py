@@ -1,3 +1,5 @@
+import logging
+
 from PySide2.QtWidgets import (
     QGroupBox,
     QVBoxLayout,
@@ -89,10 +91,10 @@ class TransformationConfiguration(QGroupBox):
 
             configurated_field = self.config_form.itemAt(i).widget()
             form_options.append(configurated_field.toPlainText())
-        print("Selected options: {}".format(form_options))
+        logging.debug("Selected options: {}".format(form_options))
 
         option_types = [option["datatype"] for option in options]
-        print("Option types: {}".format(option_types))
+        logging.debug("Option types: {}".format(option_types))
 
         # Fill in default values if an option has one and the user entered nothing into a field
         for i in range(len(form_options)):
@@ -102,7 +104,7 @@ class TransformationConfiguration(QGroupBox):
                 and len(form_options[i]) == 0
             ):
                 form_options[i] = options[i]["default_value"]
-        print("Defaults filled in: {}".format(form_options))
+        logging.debug("Defaults filled in: {}".format(form_options))
 
         # Error if a required option is still not filled
         for i in range(len(form_options)):
@@ -127,10 +129,10 @@ class TransformationConfiguration(QGroupBox):
                 )
                 invalid_datatype_messagebox.exec_()
                 return
-        print("Casted options: {}".format(form_options))
+        logging.debug("Casted options: {}".format(form_options))
 
         configured_transformation = self.selected_transformation(*form_options)
-        print("Configured Transformation: {}".format(configured_transformation))
+        logging.debug("Configured Transformation: {}".format(configured_transformation))
 
         self.pipeline_editor.pipeline.add_transformation(configured_transformation)
         self.pipeline_editor.update_pipeline_view()

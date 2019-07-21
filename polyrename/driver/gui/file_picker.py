@@ -1,3 +1,5 @@
+import logging
+
 from PySide2.QtWidgets import (
     QGroupBox,
     QVBoxLayout,
@@ -24,13 +26,13 @@ class FilePicker(QGroupBox):
         self.file_sequence = FileSequence(files)
         self._update_file_picker_list([str(file) for file in files])
 
-    def print_file_sequence_status(self):
-        print("Current file sequence: {}".format(self.file_sequence))
+    def log_file_sequence_status(self):
+        logging.debug("Current file sequence: {}".format(self.file_sequence))
 
     def clear_file_list(self):
         self.file_sequence = FileSequence([])
         self.file_list.model().clear()
-        self.print_file_sequence_status()
+        self.log_file_sequence_status()
 
     def _initialize_file_list(self):
         self.file_list = QListView()
@@ -53,7 +55,7 @@ class FilePicker(QGroupBox):
             item.setText(file_names[f])
             model.appendRow(item)
 
-        self.print_file_sequence_status()
+        self.log_file_sequence_status()
 
     def _select_files_listener(self):
         """Handles selection of files to rename"""
