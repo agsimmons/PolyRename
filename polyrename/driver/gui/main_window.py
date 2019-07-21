@@ -50,7 +50,6 @@ class MainWindow(QMainWindow):
         self.resize(1280, 720)
 
         # Center window on screen
-        # TODO: Test on multi-monitors
         qr = self.frameGeometry()
         cp = QDesktopWidget().availableGeometry().center()
         qr.moveCenter(cp)
