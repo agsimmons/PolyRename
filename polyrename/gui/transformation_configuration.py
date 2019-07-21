@@ -73,7 +73,11 @@ class TransformationConfiguration(QGroupBox):
             self.config_form.addRow(label, field)
 
     def add_configured_transformation_to_pipeline(self):
-        options = self.selected_transformation.schema["options"]
+        try:
+            options = self.selected_transformation.schema["options"]
+        except AttributeError:
+            # If no transformation is selected yet
+            return
 
         # Get form options
         form_options = []
@@ -92,15 +96,21 @@ class TransformationConfiguration(QGroupBox):
 
         # Fill in default values if an option has one and the user entered nothing into a field
         for i in range(len(form_options)):
-            if options[i]["required"] is False and "default_value" in options[i] and len(form_options[i]) == 0:
+            if (
+                options[i]["required"] is False
+                and "default_value" in options[i]
+                and len(form_options[i]) == 0
+            ):
                 form_options[i] = options[i]["default_value"]
-        print('Defaults filled in: {}'.format(form_options))
+        print("Defaults filled in: {}".format(form_options))
 
         # Error if a required option is still not filled
         for i in range(len(form_options)):
             if options[i]["required"] and len(form_options[i]) == 0:
                 missing_required_field_messagebox = QMessageBox(self)
-                missing_required_field_messagebox.setText("ERROR: Field '{}' is required".format(options[i]["name"]))
+                missing_required_field_messagebox.setText(
+                    "ERROR: Field '{}' is required".format(options[i]["name"])
+                )
                 missing_required_field_messagebox.exec_()
                 return
 
@@ -111,7 +121,9 @@ class TransformationConfiguration(QGroupBox):
             except ValueError:
                 invalid_datatype_messagebox = QMessageBox(self)
                 invalid_datatype_messagebox.setText(
-                    "ERROR! Invalid input datatype for field: {}".format(options[i]["name"])
+                    "ERROR! Invalid input datatype for field: {}".format(
+                        options[i]["name"]
+                    )
                 )
                 invalid_datatype_messagebox.exec_()
                 return
