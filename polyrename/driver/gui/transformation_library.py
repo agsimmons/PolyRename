@@ -1,9 +1,6 @@
-from PySide2.QtWidgets import (
-    QGroupBox,
-    QVBoxLayout,
-    QListView,
-    QAbstractItemView,
-)
+import logging
+
+from PySide2.QtWidgets import QGroupBox, QVBoxLayout, QListView, QAbstractItemView
 from PySide2.QtGui import QStandardItemModel, QStandardItem
 
 from polyrename.transformation import TRANSFORMATIONS, TRANSFORMATIONS_BY_NAME
@@ -46,6 +43,6 @@ class TransformationLibrary(QGroupBox):
 
         model = self.transformation_list.model()
         selected_transformation = TRANSFORMATIONS_BY_NAME[model.data(x)]
-        print("Selected transformation: {}".format(selected_transformation))
+        logging.debug("Selected transformation: {}".format(selected_transformation))
 
         self.transformation_configuration.swap_configuration(selected_transformation)

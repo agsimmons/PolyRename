@@ -11,11 +11,16 @@ def test_pipeline():
 
     app = QApplication([])
 
-    prefix_transformation = prefix.PrefixTransformation('Hello_')
-    suffix_transformation = suffix.SuffixTransformation('_World')
+    prefix_transformation = prefix.PrefixTransformation("Hello_")
+    suffix_transformation = suffix.SuffixTransformation("_World")
 
     prefix_suffix_pipeline = pipeline.Pipeline()
     prefix_suffix_pipeline.add_transformation(prefix_transformation)
     prefix_suffix_pipeline.add_transformation(suffix_transformation)
 
-    assert prefix_suffix_pipeline.resolve(TEST_SEQUENCE_01) == [Path('/home/test/Hello_example_World.py'), Path('Hello_file_without_extension_World'), Path('Hello_relative_World.jpg'), Path('relative/path/Hello_extreme_extreme04.tar_World.gz')]
+    assert prefix_suffix_pipeline.resolve(TEST_SEQUENCE_01) == [
+        Path("/home/test/Hello_example_World.py"),
+        Path("Hello_file_without_extension_World"),
+        Path("Hello_relative_World.jpg"),
+        Path("relative/path/Hello_extreme_extreme04.tar_World.gz"),
+    ]

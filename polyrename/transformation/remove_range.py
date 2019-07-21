@@ -3,24 +3,24 @@ from polyrename.transformation.transformation import Transformation
 
 class RemoveRangeTransformation(Transformation):
     schema = {
-        'metadata': {
-            'name': 'Remove Range',
-            'description': 'Removes range of text in file name'
+        "metadata": {
+            "name": "Remove Range",
+            "description": "Removes range of text in file name",
         },
-        'options': [
+        "options": [
             {
-                'name': 'Start',
-                'description': 'Start position (inclusive)',
-                'datatype': int,
-                'required': True
+                "name": "Start",
+                "description": "Start position (inclusive)",
+                "datatype": int,
+                "required": True,
             },
             {
-                'name': 'Stop',
-                'description': 'Stop position (exclusive)',
-                'datatype': int,
-                'required': True
-            }
-        ]
+                "name": "Stop",
+                "description": "Stop position (exclusive)",
+                "datatype": int,
+                "required": True,
+            },
+        ],
     }
 
     def __init__(self, start, stop):
@@ -39,7 +39,7 @@ class RemoveRangeTransformation(Transformation):
                 except IndexError:
                     break
 
-            file = file.parent / (''.join(file_name_characters) + file.suffix)
+            file = file.parent / ("".join(file_name_characters) + file.suffix)
 
             return_sequence.append(file)
 

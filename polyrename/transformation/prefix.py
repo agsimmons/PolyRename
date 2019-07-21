@@ -3,18 +3,15 @@ from polyrename.transformation.transformation import Transformation
 
 class PrefixTransformation(Transformation):
     schema = {
-        'metadata': {
-            'name': 'Prefix',
-            'description': 'Prepend text to filename'
-        },
-        'options': [
+        "metadata": {"name": "Prefix", "description": "Prepend text to filename"},
+        "options": [
             {
-                'name': 'Text',
-                'description': 'Text to prepend',
-                'datatype': str,
-                'required': True
+                "name": "Text",
+                "description": "Text to prepend",
+                "datatype": str,
+                "required": True,
             }
-        ]
+        ],
     }
 
     def __init__(self, text):

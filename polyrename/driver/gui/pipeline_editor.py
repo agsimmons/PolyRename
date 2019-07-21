@@ -1,3 +1,4 @@
+import logging
 import shutil
 
 from PySide2.QtWidgets import (
@@ -62,10 +63,10 @@ class PipelineEditor(QGroupBox):
         row_2_layout.addWidget(self.applyButton)
         self.applyButton.clicked.connect(self._apply_pipeline_listener)
 
-        self._update_pipeline_view()
+        self.update_pipeline_view()
 
-    def _update_pipeline_view(self):
-        print(self.pipeline)
+    def update_pipeline_view(self):
+        logging.debug(self.pipeline)
         model = self.pipelineView.model()
         model.clear()
 
@@ -84,19 +85,23 @@ class PipelineEditor(QGroupBox):
             if to_move < 1:
                 return
             self.pipeline.move_transformation_up(to_move)
-            self._update_pipeline_view()
-            self.pipelineView.setCurrentIndex(self.pipelineView.model().index(to_move-1, 0))
+            self.update_pipeline_view()
+            self.pipelineView.setCurrentIndex(
+                self.pipelineView.model().index(to_move - 1, 0)
+            )
         except IndexError:
             return
 
     def _move_down_listener(self):
         try:
             to_move = self.pipelineView.selectionModel().selectedIndexes()[0].row()
-            if to_move > self.pipelineView.model().rowCount()-2:
+            if to_move > self.pipelineView.model().rowCount() - 2:
                 return
             self.pipeline.move_transformation_down(to_move)
-            self._update_pipeline_view()
-            self.pipelineView.setCurrentIndex(self.pipelineView.model().index(to_move+1, 0))
+            self.update_pipeline_view()
+            self.pipelineView.setCurrentIndex(
+                self.pipelineView.model().index(to_move + 1, 0)
+            )
         except IndexError:
             return
 
@@ -104,19 +109,35 @@ class PipelineEditor(QGroupBox):
         try:
             to_delete = self.pipelineView.selectionModel().selectedIndexes()[0].row()
             self.pipeline.remove_transformation(to_delete)
-            self._update_pipeline_view()
-            if to_delete > self.pipelineView.model().rowCount()-1:
-                self.pipelineView.setCurrentIndex(self.pipelineView.model().index(to_delete-1, 0))
+            self.update_pipeline_view()
+            if to_delete > self.pipelineView.model().rowCount() - 1:
+                self.pipelineView.setCurrentIndex(
+                    self.pipelineView.model().index(to_delete - 1, 0)
+                )
             else:
-                self.pipelineView.setCurrentIndex(self.pipelineView.model().index(to_delete, 0))
+                self.pipelineView.setCurrentIndex(
+                    self.pipelineView.model().index(to_delete, 0)
+                )
         except IndexError:
             return
 
     def _apply_pipeline_listener(self):
-        # TODO: inform the user of errors, ie empty pipeline when pressing apply
-        if self.pipeline.rowCount() < 1:
+        # Check that at least one transformation has been added to the pipeline
+        if self.pipeline.rowCount() == 0:
+            no_transformations_messagebox = QMessageBox(self)
+            no_transformations_messagebox.setText("ERROR: No transformations selected")
+            no_transformations_messagebox.exec_()
             return
+
         file_sequence = self.file_picker.file_sequence.files
+
+        # Check that at least one file has been added to the file sequence
+        if len(file_sequence) == 0:
+            no_files_messagebox = QMessageBox(self)
+            no_files_messagebox.setText("ERROR: No files selected")
+            no_files_messagebox.exec_()
+            return
+
         transformed_sequence = self.pipeline.resolve(file_sequence)
 
         before_after = list(zip(file_sequence, transformed_sequence))
@@ -137,4 +158,3 @@ class PipelineEditor(QGroupBox):
             for rename in before_after:
                 shutil.move(*rename)
             self.file_picker.clear_file_list()
-

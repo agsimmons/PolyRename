@@ -3,19 +3,19 @@ from polyrename.transformation.transformation import Transformation
 
 class ReplaceExtensionTransformation(Transformation):
     schema = {
-        'metadata': {
-            'name': 'Replace Extension',
-            'description': 'Replaces file extension with specified extension'
+        "metadata": {
+            "name": "Replace Extension",
+            "description": "Replaces file extension with specified extension",
         },
-        'options': [
+        "options": [
             {
-                'name': 'Extension',
-                'description': 'Extension to use in replacement',
-                'datatype': str,
-                'required': False,
-                'default_value': ''
+                "name": "Extension",
+                "description": "Extension to use in replacement",
+                "datatype": str,
+                "required": False,
+                "default_value": "",
             }
-        ]
+        ],
     }
 
     def __init__(self, extension):

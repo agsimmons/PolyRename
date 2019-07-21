@@ -6,46 +6,32 @@ from polyrename.transformation.utils.path_utils import insert_text_before_extens
 
 class MusicTagsTransformation(Transformation):
     schema = {
-        'metadata': {
-            'name': 'Music Tags',
-            'description': 'Append a formatted string that pulls data from music metadata'
+        "metadata": {
+            "name": "Music Tags",
+            "description": "Append a formatted string that pulls data from music metadata",
         },
-        'options': [
+        "options": [
             {
-                'name': 'Format String',
-                'description': 'Format string for text to append',
-                'datatype': str,
-                'required': True
+                "name": "Format String",
+                "description": "Format string for text to append",
+                "datatype": str,
+                "required": True,
             }
-        ]
+        ],
     }
 
-    format_map = {
-        '%t': 'title',
-        '%n': 'tracknumber',
-        '%a': 'artist',
-    }
+    format_map = {"%t": "title", "%n": "tracknumber", "%a": "artist"}
 
-    forbidden_characters = [
-        r'<',
-        r'>',
-        r':',
-        r'"',
-        r'/',
-        r'\\',
-        r'|',
-        r'?',
-        r'*',
-    ]
+    forbidden_characters = [r"<", r">", r":", r'"', r"/", r"\\", r"|", r"?", r"*"]
 
     def __init__(self, format_string):
         self.format_string = format_string
 
     def sanitize_tag(self, tag):
         for character in self.forbidden_characters:
-            tag = tag.replace(character, '')
+            tag = tag.replace(character, "")
 
-        tag = tag.replace('\x00', '')
+        tag = tag.replace("\x00", "")
 
         return tag
 
@@ -68,7 +54,7 @@ class MusicTagsTransformation(Transformation):
                     tag_value = music_file.get_tags()[replacement]
                 except KeyError as e:
                     print(e)
-                    formatted_string = formatted_string.replace(formatter, '')
+                    formatted_string = formatted_string.replace(formatter, "")
                     continue
 
                 tag_value = self.sanitize_tag(tag_value)

@@ -6,18 +6,18 @@ import datetime
 
 class CurrentDateTimeTransformation(Transformation):
     schema = {
-        'metadata': {
-            'name': 'Current Datetime',
-            'description': 'Appends the current datetime accourding to a format string'
+        "metadata": {
+            "name": "Current Datetime",
+            "description": "Appends the current datetime accourding to a format string",
         },
-        'options': [
+        "options": [
             {
-                'name': 'Format String',
-                'description': 'Format string for datetime (see https://docs.python.org/3.7/library/datetime.html#strftime-and-strptime-behavior)',
-                'datatype': str,
-                'required': True
+                "name": "Format String",
+                "description": "Format string for datetime (see https://docs.python.org/3.7/library/datetime.html#strftime-and-strptime-behavior)",
+                "datatype": str,
+                "required": True,
             }
-        ]
+        ],
     }
 
     def __init__(self, format_string):
