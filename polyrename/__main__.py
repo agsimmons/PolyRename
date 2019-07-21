@@ -1,9 +1,6 @@
 import argparse
 from pathlib import Path
 
-import sys
-print(sys.path)
-
 from polyrename.driver import driver_gui, driver_test
 
 
