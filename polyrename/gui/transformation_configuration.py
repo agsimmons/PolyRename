@@ -7,6 +7,7 @@ from PySide2.QtWidgets import (
     QLabel,
     QTextEdit,
     QPushButton,
+    QMessageBox,
 )
 from PySide2.QtGui import QFontMetrics
 
@@ -90,7 +91,17 @@ class TransformationConfiguration(QGroupBox):
 
         # Convert form options to correct datatype
         for i in range(len(form_options)):
-            form_options[i] = option_types[i](form_options[i])
+            try:
+                form_options[i] = option_types[i](form_options[i])
+            except ValueError:
+                invalid_datatype_messagebox = QMessageBox(self)
+                invalid_datatype_messagebox.setText(
+                    "ERROR! Invalid input datatype for field: {}".format(
+                        self.selected_transformation.schema["options"][i]["name"]
+                    )
+                )
+                invalid_datatype_messagebox.exec_()
+                return
 
         print("Casted options: {}".format(form_options))
 
