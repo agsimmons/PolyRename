@@ -15,8 +15,10 @@ from polyrename.transformation.pipeline import Pipeline
 
 
 class PipelineEditor(QGroupBox):
-    def __init__(self, file_picker):
+    def __init__(self, file_picker, status_bar):
         super().__init__("Pipeline Editor")
+
+        self.status_bar = status_bar
 
         self.setLayout(QVBoxLayout())
 
@@ -87,6 +89,7 @@ class PipelineEditor(QGroupBox):
             self._update_pipeline_view()
             self.pipelineView.setCurrentIndex(self.pipelineView.model().index(to_move-1, 0))
         except IndexError:
+            self.status_bar.showMessage("Select a transformation to move it up!")
             return
 
     def _move_down_listener(self):
@@ -98,6 +101,7 @@ class PipelineEditor(QGroupBox):
             self._update_pipeline_view()
             self.pipelineView.setCurrentIndex(self.pipelineView.model().index(to_move+1, 0))
         except IndexError:
+            self.status_bar.showMessage("Select a transformation to move it down!")
             return
 
     def _delete_listener(self):
@@ -110,11 +114,12 @@ class PipelineEditor(QGroupBox):
             else:
                 self.pipelineView.setCurrentIndex(self.pipelineView.model().index(to_delete, 0))
         except IndexError:
+            self.status_bar.showMessage("Select a transformation to delete it!")
             return
 
     def _apply_pipeline_listener(self):
-        # TODO: inform the user of errors, ie empty pipeline when pressing apply
         if self.pipeline.rowCount() < 1:
+            self.status_bar.showMessage("Pipeline is empty, nothing to apply!")
             return
         file_sequence = self.file_picker.file_sequence.files
         transformed_sequence = self.pipeline.resolve(file_sequence)

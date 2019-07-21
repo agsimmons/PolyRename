@@ -15,11 +15,13 @@ class MainWindow(QMainWindow):
         self.init_window()
         self.init_layout()
 
+        self.init_status_bar()
+
         # Initialize each quadrant
         self.file_picker = FilePicker()
         self.grid_layout.addWidget(self.file_picker, 0, 1)
 
-        self.pipeline_editor = PipelineEditor(self.file_picker)
+        self.pipeline_editor = PipelineEditor(self.file_picker, self.status_bar)
         self.grid_layout.addWidget(self.pipeline_editor, 0, 0)
 
         self.transformation_configuration = TransformationConfiguration(self.pipeline_editor)
@@ -83,8 +85,9 @@ class MainWindow(QMainWindow):
         help_menu.addAction(about_action)
 
         # Initialize Status Bar
-        status_bar = self.statusBar()
-        status_bar.showMessage("Ready")
+    def init_status_bar(self):
+        self.status_bar = self.statusBar()
+        self.status_bar.showMessage("Ready")
 
     def init_layout(self):
         """Initialize base layout of main windows"""
