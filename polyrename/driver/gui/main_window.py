@@ -9,7 +9,7 @@ from PySide2.QtWidgets import (
 from PySide2.QtGui import QIcon
 from PySide2.QtCore import QSize
 
-from polyrename import ASSET_ROOT
+from polyrename.driver.gui import ICON_ROOT
 from polyrename.driver.gui.file_picker import FilePicker
 from polyrename.driver.gui.transformation_library import TransformationLibrary
 from polyrename.driver.gui.transformation_configuration import (
@@ -62,14 +62,12 @@ class MainWindow(QMainWindow):
     def _init_logo(self):
         """Initialize application icon"""
 
-        icon_root = ASSET_ROOT / 'images/gui/icons'
-
         app_icon = QIcon()
-        app_icon.addFile(str(icon_root / '16x16.png'), QSize(16, 16))
-        app_icon.addFile(str(icon_root / '32x32.png'), QSize(32, 32))
-        app_icon.addFile(str(icon_root / '64x64.png'), QSize(64, 64))
-        app_icon.addFile(str(icon_root / '128x128.png'), QSize(128, 128))
-        app_icon.addFile(str(icon_root / '256x256.png'), QSize(256, 256))
+        app_icon.addFile(str(ICON_ROOT / '16x16.png'), QSize(16, 16))
+        app_icon.addFile(str(ICON_ROOT / '32x32.png'), QSize(32, 32))
+        app_icon.addFile(str(ICON_ROOT / '64x64.png'), QSize(64, 64))
+        app_icon.addFile(str(ICON_ROOT / '128x128.png'), QSize(128, 128))
+        app_icon.addFile(str(ICON_ROOT / '256x256.png'), QSize(256, 256))
 
         self.setWindowIcon(app_icon)
 

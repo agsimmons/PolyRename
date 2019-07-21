@@ -29,7 +29,9 @@ setup(
         'Bug Tracker': 'https://github.com/agsimmons/PolyRename/issues/',
     },
 
-    packages=find_packages(exclude=['tests']),
+    packages=find_packages(),
+    include_package_data=True,
+    zip_safe=False,
 
     entry_points={
         'console_scripts': ['polyrename=polyrename.__main__:main']
