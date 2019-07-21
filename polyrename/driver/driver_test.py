@@ -1,20 +1,9 @@
-import argparse
-from pathlib import Path
 import shutil
 
 from polyrename.transformation import TRANSFORMATIONS
 
 
-def parse_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("files", nargs="+")
-    return parser.parse_args()
-
-
-def main():
-    args = parse_args()
-    file_sequence = [Path(file) for file in args.files if Path(file).exists()]
-
+def main(files):
     print("Choose a transformation:")
     for i, tranformation in enumerate(TRANSFORMATIONS):
         print("{}) {}".format(i, tranformation.schema["metadata"]["name"]))
@@ -57,9 +46,9 @@ def main():
 
     # Create transformation with selected arguments
     tranformation = transformation_class(*transformation_args)
-    transformed_file_sequence = tranformation.resolve(file_sequence)
+    transformed_file_sequence = tranformation.resolve(files)
     print("Preview:")
-    file_pairs = list(zip(file_sequence, transformed_file_sequence))
+    file_pairs = list(zip(files, transformed_file_sequence))
     for file_pair in file_pairs:
         print("{} -> {}".format(*file_pair))
 
@@ -71,7 +60,3 @@ def main():
     if response == "y":
         for file_pair in file_pairs:
             shutil.move(*file_pair)
-
-
-if __name__ == "__main__":
-    main()

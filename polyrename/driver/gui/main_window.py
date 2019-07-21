@@ -7,12 +7,10 @@ from PySide2.QtWidgets import (
     QMessageBox,
 )
 
-from polyrename.gui import (
-    FilePicker,
-    TransformationLibrary,
-    TransformationConfiguration,
-    PipelineEditor,
-)
+from polyrename.driver.gui.file_picker import FilePicker
+from polyrename.driver.gui.transformation_library import TransformationLibrary
+from polyrename.driver.gui.transformation_configuration import TransformationConfiguration
+from polyrename.driver.gui.pipeline_editor import PipelineEditor
 
 
 class MainWindow(QMainWindow):
