@@ -11,7 +11,6 @@ def main(files):
 
     app = QApplication(sys.argv)
 
-    # TODO: Use files as initial file sequence
-    window = MainWindow()
+    window = MainWindow(files)
 
     sys.exit(app.exec_())

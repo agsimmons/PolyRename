@@ -19,7 +19,7 @@ from polyrename.driver.gui.pipeline_editor import PipelineEditor
 
 
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, files):
         super().__init__()
 
         self._init_window()
@@ -27,7 +27,7 @@ class MainWindow(QMainWindow):
         self._init_layout()
 
         # Initialize each quadrant
-        self.file_picker = FilePicker()
+        self.file_picker = FilePicker(files)
         self.grid_layout.addWidget(self.file_picker, 0, 1)
 
         self.pipeline_editor = PipelineEditor(self.file_picker)

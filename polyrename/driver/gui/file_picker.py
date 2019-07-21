@@ -12,7 +12,7 @@ from polyrename.file_sequence import FileSequence
 
 
 class FilePicker(QGroupBox):
-    def __init__(self):
+    def __init__(self, files):
         super().__init__("File Picker")
 
         self.setLayout(QVBoxLayout())
@@ -20,6 +20,9 @@ class FilePicker(QGroupBox):
         self.file_sequence = FileSequence([])
 
         self._initialize_file_list()
+
+        self.file_sequence = FileSequence(files)
+        self._update_file_picker_list([str(file) for file in files])
 
     def print_file_sequence_status(self):
         print("Current file sequence: {}".format(self.file_sequence))
@@ -40,18 +43,22 @@ class FilePicker(QGroupBox):
         select_files.clicked.connect(self._select_files_listener)
         self.layout().addWidget(select_files)
 
-    def _select_files_listener(self):
-        """Handles selection of files to rename"""
-
-        files = QFileDialog.getOpenFileNames(self, "Select Files", ".")
-        self.file_sequence = FileSequence(files[0])
-        self.print_file_sequence_status()
-
+    def _update_file_picker_list(self, file_names):
         model = self.file_list.model()
 
         # Update File Picker list from files[]
         model.clear()
         for f in range(self.file_sequence.rowCount()):
             item = QStandardItem()
-            item.setText(files[0][f])
+            item.setText(file_names[f])
             model.appendRow(item)
+
+        self.print_file_sequence_status()
+
+    def _select_files_listener(self):
+        """Handles selection of files to rename"""
+
+        files = QFileDialog.getOpenFileNames(self, "Select Files", ".")
+        self.file_sequence = FileSequence(files[0])
+
+        self._update_file_picker_list(files[0])
