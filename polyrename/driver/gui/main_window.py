@@ -6,7 +6,10 @@ from PySide2.QtWidgets import (
     QAction,
     QMessageBox,
 )
+from PySide2.QtGui import QIcon
+from PySide2.QtCore import QSize
 
+from polyrename import ASSET_ROOT
 from polyrename.driver.gui.file_picker import FilePicker
 from polyrename.driver.gui.transformation_library import TransformationLibrary
 from polyrename.driver.gui.transformation_configuration import (
@@ -20,6 +23,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.init_window()
+        self.init_logo()
         self.init_layout()
 
         # Initialize each quadrant
@@ -54,6 +58,18 @@ class MainWindow(QMainWindow):
         cp = QDesktopWidget().availableGeometry().center()
         qr.moveCenter(cp)
         self.move(qr.topLeft())
+
+    def init_logo(self):
+        icon_root = ASSET_ROOT / 'images/gui/icons'
+
+        app_icon = QIcon()
+        app_icon.addFile(str(icon_root / '16x16.png'), QSize(16, 16))
+        app_icon.addFile(str(icon_root / '32x32.png'), QSize(32, 32))
+        app_icon.addFile(str(icon_root / '64x64.png'), QSize(64, 64))
+        app_icon.addFile(str(icon_root / '128x128.png'), QSize(128, 128))
+        app_icon.addFile(str(icon_root / '256x256.png'), QSize(256, 256))
+
+        self.setWindowIcon(app_icon)
 
     def init_menu_bar(self):
         """Initialize Menu Bar and contained menus"""
