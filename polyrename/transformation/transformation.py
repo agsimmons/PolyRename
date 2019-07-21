@@ -1,4 +1,7 @@
 class Transformation:
+
+    schema = {}
+
     def __init__(self):
         raise NotImplementedError
 

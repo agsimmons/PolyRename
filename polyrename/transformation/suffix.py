@@ -4,18 +4,15 @@ from polyrename.transformation.utils.path_utils import insert_text_before_extens
 
 class SuffixTransformation(Transformation):
     schema = {
-        'metadata': {
-            'name': 'Suffix',
-            'description': 'Append text to filename'
-        },
-        'options': [
+        "metadata": {"name": "Suffix", "description": "Append text to filename"},
+        "options": [
             {
-                'name': 'Text',
-                'description': 'Text to append',
-                'datatype': str,
-                'required': True
+                "name": "Text",
+                "description": "Text to append",
+                "datatype": str,
+                "required": True,
             }
-        ]
+        ],
     }
 
     def __init__(self, text):

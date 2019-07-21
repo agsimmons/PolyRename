@@ -38,4 +38,4 @@ class Pipeline(QAbstractListModel):
         return self.transformations[QModelIndex]
 
     def __str__(self):
-        return 'Pipeline({})'.format(self.transformations)
+        return "Pipeline({})".format(self.transformations)

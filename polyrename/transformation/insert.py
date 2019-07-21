@@ -4,24 +4,24 @@ from polyrename.transformation.utils.path_utils import insert_text_before_extens
 
 class InsertTransformation(Transformation):
     schema = {
-        'metadata': {
-            'name': 'Insert',
-            'description': 'Inserts text at specified location'
+        "metadata": {
+            "name": "Insert",
+            "description": "Inserts text at specified location",
         },
-        'options': [
+        "options": [
             {
-                'name': 'Text',
-                'description': 'Text to insert',
-                'datatype': str,
-                'required': True
+                "name": "Text",
+                "description": "Text to insert",
+                "datatype": str,
+                "required": True,
             },
             {
-                'name': 'Position',
-                'description': 'Position to insert text at',
-                'datatype': int,
-                'required': True
-            }
-        ]
+                "name": "Position",
+                "description": "Position to insert text at",
+                "datatype": int,
+                "required": True,
+            },
+        ],
     }
 
     def __init__(self, text, position):
@@ -35,8 +35,8 @@ class InsertTransformation(Transformation):
             if len(file.stem) < self.position:
                 file = insert_text_before_extension(file, self.text)
             else:
-                before = file.stem[0:self.position]
-                after = file.stem[self.position:]
+                before = file.stem[0 : self.position]
+                after = file.stem[self.position :]
                 file = file.parent / (before + self.text + after + file.suffix)
 
             return_sequence.append(file)

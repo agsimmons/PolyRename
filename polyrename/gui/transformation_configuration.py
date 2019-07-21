@@ -43,7 +43,7 @@ class TransformationConfiguration(QGroupBox):
         self.layout().addWidget(scroll_area)
 
     def _initialize_add_button(self):
-        add_button = QPushButton('Add to Pipeline')
+        add_button = QPushButton("Add to Pipeline")
         add_button.clicked.connect(self.add_configured_transformation_to_pipeline)
 
         self.layout().addWidget(add_button)
@@ -80,20 +80,23 @@ class TransformationConfiguration(QGroupBox):
             configurated_field = self.config_form.itemAt(i).widget()
             form_options.append(configurated_field.toPlainText())
 
-        print('Selected options: {}'.format(form_options))
+        print("Selected options: {}".format(form_options))
 
-        option_types = [option['datatype'] for option in self.selected_transformation.schema['options']]
-        print('Option types: {}'.format(option_types))
+        option_types = [
+            option["datatype"]
+            for option in self.selected_transformation.schema["options"]
+        ]
+        print("Option types: {}".format(option_types))
 
         # Convert form options to correct datatype
         for i in range(len(form_options)):
             form_options[i] = option_types[i](form_options[i])
 
-        print('Casted options: {}'.format(form_options))
+        print("Casted options: {}".format(form_options))
 
         configured_transformation = self.selected_transformation(*form_options)
 
-        print('Configured Transformation: {}'.format(configured_transformation))
+        print("Configured Transformation: {}".format(configured_transformation))
 
         self.pipeline_editor.pipeline.add_transformation(configured_transformation)
-        self.pipeline_editor._update_pipeline_view()
+        self.pipeline_editor.update_pipeline_view()

@@ -1,9 +1,4 @@
-from PySide2.QtWidgets import (
-    QGroupBox,
-    QVBoxLayout,
-    QListView,
-    QAbstractItemView,
-)
+from PySide2.QtWidgets import QGroupBox, QVBoxLayout, QListView, QAbstractItemView
 from PySide2.QtGui import QStandardItemModel, QStandardItem
 
 from polyrename.transformation import TRANSFORMATIONS, TRANSFORMATIONS_BY_NAME
