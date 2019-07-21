@@ -1,7 +1,7 @@
-from PySide2.QtWidgets import QAbstractItemView
+from PySide2.QtCore import QAbstractListModel
 
 
-class Pipeline(QAbstractItemView):
+class Pipeline(QAbstractListModel):
     def __init__(self):
         super().__init__()
 
@@ -30,6 +30,12 @@ class Pipeline(QAbstractItemView):
             file_sequence = transformation.resolve(file_sequence)
 
         return file_sequence
+
+    def rowCount(self, parent=None, *args, **kwargs):
+        return len(self.transformations)
+
+    def data(self, QModelIndex, role=None):
+        return self.transformations[QModelIndex]
 
     def __str__(self):
         return 'Pipeline({})'.format(self.transformations)

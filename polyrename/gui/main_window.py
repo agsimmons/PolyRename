@@ -6,24 +6,21 @@ from polyrename.gui import (
     TransformationConfiguration,
     PipelineEditor,
 )
-from polyrename.transformation.pipeline import Pipeline
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.pipeline = Pipeline()
-
         self.init_window()
         self.init_layout()
 
         # Initialize each quadrant
-        self.pipeline_editor = PipelineEditor()
-        self.grid_layout.addWidget(self.pipeline_editor, 0, 0)
-
         self.file_picker = FilePicker()
         self.grid_layout.addWidget(self.file_picker, 0, 1)
+
+        self.pipeline_editor = PipelineEditor(self.file_picker)
+        self.grid_layout.addWidget(self.pipeline_editor, 0, 0)
 
         self.transformation_configuration = TransformationConfiguration(self.pipeline_editor)
         self.grid_layout.addWidget(self.transformation_configuration, 1, 1)

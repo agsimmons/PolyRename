@@ -96,3 +96,4 @@ class TransformationConfiguration(QGroupBox):
         print('Configured Transformation: {}'.format(configured_transformation))
 
         self.pipeline_editor.pipeline.add_transformation(configured_transformation)
+        self.pipeline_editor._update_pipeline_view()

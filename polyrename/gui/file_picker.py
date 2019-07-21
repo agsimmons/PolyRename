@@ -17,7 +17,17 @@ class FilePicker(QGroupBox):
 
         self.setLayout(QVBoxLayout())
 
+        self.file_sequence = FileSequence([])
+
         self._initialize_file_list()
+
+    def print_file_sequence_status(self):
+        print("Current file sequence: {}".format(self.file_sequence))
+
+    def clear_file_list(self):
+        self.file_sequence = FileSequence([])
+        self.file_list.model().clear()
+        self.print_file_sequence_status()
 
     def _initialize_file_list(self):
         self.file_list = QListView()
@@ -35,7 +45,7 @@ class FilePicker(QGroupBox):
 
         files = QFileDialog.getOpenFileNames(self, "Select Files", ".")
         self.file_sequence = FileSequence(files[0])
-        print("Current file sequence: {}".format(self.file_sequence))
+        self.print_file_sequence_status()
 
         model = self.file_list.model()
 
