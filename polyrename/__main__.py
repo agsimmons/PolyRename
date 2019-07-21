@@ -14,7 +14,16 @@ def _parse_args():
     return parser.parse_args()
 
 
-def main(mode, files):
+def main():
+    args = _parse_args()
+
+    mode = args.mode
+    files = [
+        Path(file)
+        for file in args.files
+        if Path(file).exists() and Path(file).is_file()
+    ]
+
     if mode == "gui":
         driver_gui.main(files)
     elif mode == "test":
@@ -22,13 +31,4 @@ def main(mode, files):
 
 
 if __name__ == "__main__":
-    args = _parse_args()
-
-    arg_mode = args.mode
-    arg_files = [
-        Path(file)
-        for file in args.files
-        if Path(file).exists() and Path(file).is_file()
-    ]
-
-    main(arg_mode, arg_files)
+    main()
