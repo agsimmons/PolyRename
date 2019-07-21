@@ -43,4 +43,4 @@ class RegexReplaceTransformation(Transformation):
         return return_sequence
 
     def __repr__(self):
-        return "RegexReplaceTransformation('{}', '{}'".format(self.match, self.replace)
+        return "RegexReplaceTransformation('{}', '{}')".format(self.match, self.replace)
