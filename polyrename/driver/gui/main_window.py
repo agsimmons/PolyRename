@@ -63,11 +63,11 @@ class MainWindow(QMainWindow):
         """Initialize application icon"""
 
         app_icon = QIcon()
-        app_icon.addFile(str(ICON_ROOT / '16x16.png'), QSize(16, 16))
-        app_icon.addFile(str(ICON_ROOT / '32x32.png'), QSize(32, 32))
-        app_icon.addFile(str(ICON_ROOT / '64x64.png'), QSize(64, 64))
-        app_icon.addFile(str(ICON_ROOT / '128x128.png'), QSize(128, 128))
-        app_icon.addFile(str(ICON_ROOT / '256x256.png'), QSize(256, 256))
+        app_icon.addFile(str(ICON_ROOT / "16x16.png"), QSize(16, 16))
+        app_icon.addFile(str(ICON_ROOT / "32x32.png"), QSize(32, 32))
+        app_icon.addFile(str(ICON_ROOT / "64x64.png"), QSize(64, 64))
+        app_icon.addFile(str(ICON_ROOT / "128x128.png"), QSize(128, 128))
+        app_icon.addFile(str(ICON_ROOT / "256x256.png"), QSize(256, 256))
 
         self.setWindowIcon(app_icon)
 
