@@ -6,6 +6,3 @@ A cross-platform, bulk-file rename tool
 
 ## Documentation
 PolyRename's documentation is hosted on [ReadTheDocs](http://polyrename.readthedocs.io/)
-
-## Contributing
-This project is not open for any contributions at this time. This will change later in the year.
