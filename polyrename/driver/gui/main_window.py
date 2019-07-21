@@ -22,9 +22,9 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.init_window()
-        self.init_logo()
-        self.init_layout()
+        self._init_window()
+        self._init_logo()
+        self._init_layout()
 
         # Initialize each quadrant
         self.file_picker = FilePicker()
@@ -47,7 +47,7 @@ class MainWindow(QMainWindow):
 
         self.show()
 
-    def init_window(self):
+    def _init_window(self):
         """Initialize main window size and position"""
 
         self.setWindowTitle("PolyRename")
@@ -59,7 +59,7 @@ class MainWindow(QMainWindow):
         qr.moveCenter(cp)
         self.move(qr.topLeft())
 
-    def init_logo(self):
+    def _init_logo(self):
         icon_root = ASSET_ROOT / 'images/gui/icons'
 
         app_icon = QIcon()
@@ -71,7 +71,7 @@ class MainWindow(QMainWindow):
 
         self.setWindowIcon(app_icon)
 
-    def init_layout(self):
+    def _init_layout(self):
         """Initialize base layout of main windows"""
 
         self.grid_layout = QGridLayout()
@@ -114,14 +114,14 @@ class MainWindow(QMainWindow):
         about_action = QAction("&About", self)
         about_action.setShortcut("Ctrl+?")
         about_action.setStatusTip("About PolyRename")
-        about_action.triggered.connect(self.about_polyrename)
+        about_action.triggered.connect(self._about_polyrename_handler)
         help_menu.addAction(about_action)
 
         # Initialize Status Bar
         status_bar = self.statusBar()
         status_bar.showMessage("Ready")
 
-    def about_polyrename(self):
+    def _about_polyrename_handler(self):
         info = (
             "PolyRename is a cross-platform bulk-rename tool.\n"
             "\n"
