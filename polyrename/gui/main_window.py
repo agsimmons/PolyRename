@@ -1,4 +1,11 @@
-from PySide2.QtWidgets import QMainWindow, QWidget, QDesktopWidget, QGridLayout, QAction
+from PySide2.QtWidgets import (
+    QMainWindow,
+    QWidget,
+    QDesktopWidget,
+    QGridLayout,
+    QAction,
+    QMessageBox,
+)
 
 from polyrename.gui import (
     FilePicker,
@@ -82,6 +89,7 @@ class MainWindow(QMainWindow):
         about_action = QAction("&About", self)
         about_action.setShortcut("Ctrl+?")
         about_action.setStatusTip("About PolyRename")
+        about_action.triggered.connect(self.about_polyrename)
         help_menu.addAction(about_action)
 
         # Initialize Status Bar
@@ -97,3 +105,11 @@ class MainWindow(QMainWindow):
         central_widget = QWidget()
         central_widget.setLayout(self.grid_layout)
         self.setCentralWidget(central_widget)
+
+    def about_polyrename(self):
+        info = (
+            "PolyRename is a cross-platform bulk-rename tool.\n"
+            "\n"
+            "Created By. Andrew Simmons & Ethan Smith\n"
+        )
+        about_dialog = QMessageBox.about(self, "About PolyRename", info)
