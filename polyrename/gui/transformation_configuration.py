@@ -80,7 +80,6 @@ class TransformationConfiguration(QGroupBox):
 
             configurated_field = self.config_form.itemAt(i).widget()
             form_options.append(configurated_field.toPlainText())
-
         print("Selected options: {}".format(form_options))
 
         option_types = [
@@ -102,11 +101,9 @@ class TransformationConfiguration(QGroupBox):
                 )
                 invalid_datatype_messagebox.exec_()
                 return
-
         print("Casted options: {}".format(form_options))
 
         configured_transformation = self.selected_transformation(*form_options)
-
         print("Configured Transformation: {}".format(configured_transformation))
 
         self.pipeline_editor.pipeline.add_transformation(configured_transformation)
