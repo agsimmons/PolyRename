@@ -114,14 +114,14 @@ class MainWindow(QMainWindow):
         about_action = QAction("&About", self)
         about_action.setShortcut("Ctrl+?")
         about_action.setStatusTip("About PolyRename")
-        about_action.triggered.connect(self._about_polyrename_handler)
+        about_action.triggered.connect(self._about_handler)
         help_menu.addAction(about_action)
 
         # Initialize Status Bar
         status_bar = self.statusBar()
         status_bar.showMessage("Ready")
 
-    def _about_polyrename_handler(self):
+    def _about_handler(self):
         info = (
             "PolyRename is a cross-platform bulk-rename tool.\n"
             "\n"
