@@ -31,6 +31,9 @@ setup(
 
     packages=find_packages(),
     include_package_data=True,
+    package_data={
+        'gui': ['images/*.png']
+    },
     zip_safe=False,
 
     entry_points={
