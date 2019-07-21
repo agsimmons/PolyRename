@@ -9,7 +9,7 @@ def _parse_args():
     parser = argparse.ArgumentParser(
         description="A cross-platform, bulk-file rename tool"
     )
-    parser.add_argument("--verbose", '-v', action='count', default=0, help='Verbosity')
+    parser.add_argument("--verbose", "-v", action="count", default=0, help="Verbosity")
     parser.add_argument("-mode", choices=["gui", "dev"], default="gui", help="UI Mode")
     parser.add_argument("-files", nargs="+", default=[], help="Files to Rename")
 
