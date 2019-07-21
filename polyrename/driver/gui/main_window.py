@@ -60,6 +60,8 @@ class MainWindow(QMainWindow):
         self.move(qr.topLeft())
 
     def _init_logo(self):
+        """Initialize application icon"""
+
         icon_root = ASSET_ROOT / 'images/gui/icons'
 
         app_icon = QIcon()
