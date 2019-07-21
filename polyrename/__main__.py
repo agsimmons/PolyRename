@@ -1,14 +1,14 @@
 import argparse
 from pathlib import Path
 
-from polyrename.driver import driver_gui, driver_test
+from polyrename.driver import driver_gui, driver_dev
 
 
 def _parse_args():
     parser = argparse.ArgumentParser(
         description="A cross-platform, bulk-file rename tool"
     )
-    parser.add_argument("-mode", choices=["gui", "test"], default="gui", help="UI Mode")
+    parser.add_argument("-mode", choices=["gui", "dev"], default="gui", help="UI Mode")
     parser.add_argument("-files", nargs="+", default=[], help="Files to Rename")
 
     return parser.parse_args()
@@ -26,8 +26,8 @@ def main():
 
     if mode == "gui":
         driver_gui.main(files)
-    elif mode == "test":
-        driver_test.main(files)
+    elif mode == "dev":
+        driver_dev.main(files)
 
 
 if __name__ == "__main__":
