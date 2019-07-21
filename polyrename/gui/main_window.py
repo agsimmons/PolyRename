@@ -54,7 +54,7 @@ class MainWindow(QMainWindow):
 
         menu_bar = self.menuBar()
         file_menu = menu_bar.addMenu("&File")
-        edit_menu = menu_bar.addMenu("&Edit")
+        # edit_menu = menu_bar.addMenu("&Edit")
         help_menu = menu_bar.addMenu("&Help")
 
         select_file_action = QAction("S&elect Files", self)
@@ -69,15 +69,15 @@ class MainWindow(QMainWindow):
         quit_action.triggered.connect(self.close)
         file_menu.addAction(quit_action)
 
-        undo_action = QAction("&Undo", self)
-        undo_action.setShortcut("Ctrl+Z")
-        undo_action.setStatusTip("Undo last action")
-        edit_menu.addAction(undo_action)
-
-        redo_action = QAction("&Redo", self)
-        redo_action.setShortcut("Ctrl+Shift+Z")
-        redo_action.setStatusTip("Redo last action")
-        edit_menu.addAction(redo_action)
+        # undo_action = QAction("&Undo", self)
+        # undo_action.setShortcut("Ctrl+Z")
+        # undo_action.setStatusTip("Undo last action")
+        # edit_menu.addAction(undo_action)
+        #
+        # redo_action = QAction("&Redo", self)
+        # redo_action.setShortcut("Ctrl+Shift+Z")
+        # redo_action.setStatusTip("Redo last action")
+        # edit_menu.addAction(redo_action)
 
         about_action = QAction("&About", self)
         about_action.setShortcut("Ctrl+?")
