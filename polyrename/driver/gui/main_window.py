@@ -71,6 +71,16 @@ class MainWindow(QMainWindow):
 
         self.setWindowIcon(app_icon)
 
+    def init_layout(self):
+        """Initialize base layout of main windows"""
+
+        self.grid_layout = QGridLayout()
+        self.grid_layout.setSpacing(10)
+
+        central_widget = QWidget()
+        central_widget.setLayout(self.grid_layout)
+        self.setCentralWidget(central_widget)
+
     def init_menu_bar(self):
         """Initialize Menu Bar and contained menus"""
 
@@ -110,16 +120,6 @@ class MainWindow(QMainWindow):
         # Initialize Status Bar
         status_bar = self.statusBar()
         status_bar.showMessage("Ready")
-
-    def init_layout(self):
-        """Initialize base layout of main windows"""
-
-        self.grid_layout = QGridLayout()
-        self.grid_layout.setSpacing(10)
-
-        central_widget = QWidget()
-        central_widget.setLayout(self.grid_layout)
-        self.setCentralWidget(central_widget)
 
     def about_polyrename(self):
         info = (
