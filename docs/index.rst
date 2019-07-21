@@ -5,7 +5,7 @@
 
 PolyRename Documentation
 ======================================
-Welcome to the documentation for PolyRename, a cross-platform rename tool.
+Welcome to the documentation for PolyRename, a cross-platform, bulk-file rename tool.
 
 Contents
 --------

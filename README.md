@@ -2,7 +2,7 @@
 [![Documentation Status](https://readthedocs.org/projects/polyrename/badge/?version=latest)](https://polyrename.readthedocs.io/en/latest/?badge=latest)
 
 # PolyRename
-A tool for renaming large sets of files
+A cross-platform, bulk-file rename tool
 
 ## Documentation
 PolyRename's documentation is hosted on [ReadTheDocs](http://polyrename.readthedocs.io/)
