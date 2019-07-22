@@ -8,6 +8,7 @@ from PySide2.QtWidgets import (
     QListView,
     QMessageBox,
     QHBoxLayout,
+    QAbstractItemView,
     QWidget,
 )
 from PySide2.QtGui import QStandardItem, QStandardItemModel
@@ -25,6 +26,7 @@ class PipelineEditor(QGroupBox):
 
         self.pipeline = Pipeline()
         self.pipelineView = QListView()
+        self.pipelineView.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.pipelineView.setModel(QStandardItemModel())
 
         self.layout().addWidget(self.pipelineView)
