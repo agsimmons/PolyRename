@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name='PolyRename',
-    version='0.0.1',
+    version='1.0.0',
     license='GPLv3',
     classifiers=[
         'Development Status :: 4 - Beta',
