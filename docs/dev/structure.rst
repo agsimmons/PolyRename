@@ -1,4 +1,0 @@
-PolyRename Structure
-====================
-
-TODO

@@ -1,11 +1,8 @@
-.. PolyRename documentation master file, created by
-   sphinx-quickstart on Sat Jul 20 14:07:20 2019.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 PolyRename Documentation
 ======================================
-Welcome to the documentation for PolyRename, a cross-platform, bulk-file rename tool.
+Welcome to the documentation for
+`PolyRename <https://github.com/agsimmons/PolyRename>`_, a cross-platform,
+bulk-file rename tool.
 
 Contents
 --------
@@ -16,3 +13,8 @@ Contents
    concepts/index
    usage/index
    dev/index
+
+.. toctree::
+   :maxdepth: 1
+
+   changelog

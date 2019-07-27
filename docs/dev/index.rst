@@ -7,6 +7,5 @@ how to extend PolyRename through it's :doc:`plugin` system.
 .. toctree::
    :maxdepth: 1
 
-   structure
    git
    plugin
