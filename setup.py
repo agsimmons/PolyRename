@@ -42,6 +42,6 @@ setup(
 
     install_requires=[
         'PySide2>=5.11.0',
-        'pytag>=0.1.5',
+        'mediafile>=0.2.0',
     ]
 )
