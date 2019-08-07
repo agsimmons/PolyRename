@@ -27,4 +27,4 @@ class SuffixTransformation(Transformation):
         return return_sequence
 
     def __repr__(self):
-        return "SuffixTransformation('{}')".format(self.text)
+        return f"SuffixTransformation('{self.text}')"

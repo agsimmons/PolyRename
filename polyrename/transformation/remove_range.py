@@ -46,4 +46,4 @@ class RemoveRangeTransformation(Transformation):
         return return_sequence
 
     def __repr__(self):
-        return "RemoveRangeTransformation({}, {})".format(self.start, self.stop)
+        return f"RemoveRangeTransformation({self.start}, {self.stop})"

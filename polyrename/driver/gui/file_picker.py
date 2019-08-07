@@ -27,7 +27,7 @@ class FilePicker(QGroupBox):
         self._update_file_picker_list([str(file) for file in files])
 
     def log_file_sequence_status(self):
-        logging.debug("Current file sequence: {}".format(self.file_sequence))
+        logging.debug(f"Current file sequence: {self.file_sequence}")
 
     def clear_file_list(self):
         self.file_sequence = FileSequence([])

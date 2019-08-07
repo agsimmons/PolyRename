@@ -35,4 +35,4 @@ class CurrentDateTimeTransformation(Transformation):
         return return_sequence
 
     def __repr__(self):
-        return "CurrentDateTimeTransformation('{}')".format(self.format_string)
+        return f"CurrentDateTimeTransformation('{self.format_string}')"

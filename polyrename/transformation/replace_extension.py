@@ -30,4 +30,4 @@ class ReplaceExtensionTransformation(Transformation):
         return return_sequence
 
     def __repr__(self):
-        return "ReplaceExtension({})".format(self.extension)
+        return f"ReplaceExtension({self.extension})"

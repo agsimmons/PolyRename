@@ -27,4 +27,4 @@ class PrefixTransformation(Transformation):
         return return_sequence
 
     def __repr__(self):
-        return "PrefixTransformation('{}')".format(self.text)
+        return f"PrefixTransformation('{self.text}')"

@@ -146,7 +146,7 @@ class PipelineEditor(QGroupBox):
 
         preview_text_lines = []
         for rename in before_after:
-            preview_text_lines.append("{} -> {}".format(rename[0].name, rename[1].name))
+            preview_text_lines.append(f"{rename[0].name} -> {rename[1].name}")
         preview_text = "\n".join(preview_text_lines)
 
         confirmation = QMessageBox(self)

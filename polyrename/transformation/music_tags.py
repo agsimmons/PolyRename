@@ -65,4 +65,4 @@ class MusicTagsTransformation(Transformation):
         return return_sequence
 
     def __repr__(self):
-        return "MusicTagsTransformation('{}')".format(self.format_string)
+        return f"MusicTagsTransformation('{self.format_string}')"

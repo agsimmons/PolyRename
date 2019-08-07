@@ -91,10 +91,10 @@ class TransformationConfiguration(QGroupBox):
 
             configurated_field = self.config_form.itemAt(i).widget()
             form_options.append(configurated_field.toPlainText())
-        logging.debug("Selected options: {}".format(form_options))
+        logging.debug(f"Selected options: {form_options}")
 
         option_types = [option["datatype"] for option in options]
-        logging.debug("Option types: {}".format(option_types))
+        logging.debug(f"Option types: {option_types}")
 
         # Fill in default values if an option has one and the user entered nothing into a field
         for i in range(len(form_options)):
@@ -104,7 +104,7 @@ class TransformationConfiguration(QGroupBox):
                 and len(form_options[i]) == 0
             ):
                 form_options[i] = options[i]["default_value"]
-        logging.debug("Defaults filled in: {}".format(form_options))
+        logging.debug(f"Defaults filled in: {form_options}")
 
         # Error if a required option is still not filled
         for i in range(len(form_options)):
@@ -129,10 +129,10 @@ class TransformationConfiguration(QGroupBox):
                 )
                 invalid_datatype_messagebox.exec_()
                 return
-        logging.debug("Casted options: {}".format(form_options))
+        logging.debug(f"Casted options: {form_options}")
 
         configured_transformation = self.selected_transformation(*form_options)
-        logging.debug("Configured Transformation: {}".format(configured_transformation))
+        logging.debug(f"Configured Transformation: {configured_transformation}")
 
         self.pipeline_editor.pipeline.add_transformation(configured_transformation)
         self.pipeline_editor.update_pipeline_view()

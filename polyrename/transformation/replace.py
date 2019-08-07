@@ -38,4 +38,4 @@ class ReplaceTransformation(Transformation):
         return return_sequence
 
     def __repr__(self):
-        return "ReplaceTransformation('{}'. '{}')".format(self.match, self.replace)
+        return f"ReplaceTransformation('{self.match}'. '{self.replace}')"

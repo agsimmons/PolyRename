@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.0.0 (in development)
+----------------------
+
+* Drop support for Python 3.5
+
 1.0.1 (2019-07-26)
 ------------------
 

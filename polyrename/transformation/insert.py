@@ -44,4 +44,4 @@ class InsertTransformation(Transformation):
         return return_sequence
 
     def __repr__(self):
-        return "InsertTransformation('{}', {})".format(self.text, self.position)
+        return f"InsertTransformation('{self.text}', {self.position})"
