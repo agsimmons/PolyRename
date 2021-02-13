@@ -1,21 +1,21 @@
+from PySide2.QtCore import QSize
+from PySide2.QtGui import QIcon
 from PySide2.QtWidgets import (
-    QMainWindow,
-    QWidget,
+    QAction,
     QDesktopWidget,
     QGridLayout,
-    QAction,
+    QMainWindow,
     QMessageBox,
+    QWidget,
 )
-from PySide2.QtGui import QIcon
-from PySide2.QtCore import QSize
 
 from polyrename.driver.gui import ICON_ROOT
 from polyrename.driver.gui.file_picker import FilePicker
-from polyrename.driver.gui.transformation_library import TransformationLibrary
+from polyrename.driver.gui.pipeline_editor import PipelineEditor
 from polyrename.driver.gui.transformation_configuration import (
     TransformationConfiguration,
 )
-from polyrename.driver.gui.pipeline_editor import PipelineEditor
+from polyrename.driver.gui.transformation_library import TransformationLibrary
 
 
 class MainWindow(QMainWindow):

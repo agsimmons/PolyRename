@@ -1,17 +1,17 @@
 import logging
 import shutil
 
+from PySide2.QtGui import QStandardItem, QStandardItemModel
 from PySide2.QtWidgets import (
+    QAbstractItemView,
     QGroupBox,
-    QVBoxLayout,
-    QPushButton,
+    QHBoxLayout,
     QListView,
     QMessageBox,
-    QHBoxLayout,
-    QAbstractItemView,
+    QPushButton,
+    QVBoxLayout,
     QWidget,
 )
-from PySide2.QtGui import QStandardItem, QStandardItemModel
 
 from polyrename.transformation.pipeline import Pipeline
 

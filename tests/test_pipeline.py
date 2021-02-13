@@ -2,7 +2,7 @@ from pathlib import Path
 
 from PySide2.QtWidgets import QApplication
 
-from polyrename.transformation import prefix, suffix, pipeline
+from polyrename.transformation import pipeline, prefix, suffix
 from tests import TEST_SEQUENCE_01
 
 

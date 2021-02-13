@@ -2,16 +2,16 @@ import datetime
 from pathlib import Path
 
 from polyrename.transformation import (
-    prefix,
-    suffix,
-    date_time,
-    sequence,
     current_datetime,
+    date_time,
     insert,
-    remove_range,
-    replace_extension,
-    replace,
+    prefix,
     regex_replace,
+    remove_range,
+    replace,
+    replace_extension,
+    sequence,
+    suffix,
 )
 from tests import TEST_SEQUENCE_01
 

@@ -2,7 +2,7 @@ import argparse
 import logging
 from pathlib import Path
 
-from polyrename.driver import driver_gui, driver_dev
+from polyrename.driver import driver_dev, driver_gui
 
 
 def _parse_args():

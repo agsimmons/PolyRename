@@ -1,14 +1,14 @@
 import logging
 
-from PySide2.QtWidgets import (
-    QGroupBox,
-    QVBoxLayout,
-    QListView,
-    QAbstractItemView,
-    QPushButton,
-    QFileDialog,
-)
 from PySide2.QtGui import QStandardItem, QStandardItemModel
+from PySide2.QtWidgets import (
+    QAbstractItemView,
+    QFileDialog,
+    QGroupBox,
+    QListView,
+    QPushButton,
+    QVBoxLayout,
+)
 
 from polyrename.file_sequence import FileSequence
 

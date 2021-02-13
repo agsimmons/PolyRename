@@ -1,17 +1,17 @@
 import logging
 
-from PySide2.QtWidgets import (
-    QGroupBox,
-    QVBoxLayout,
-    QScrollArea,
-    QWidget,
-    QFormLayout,
-    QLabel,
-    QTextEdit,
-    QPushButton,
-    QMessageBox,
-)
 from PySide2.QtGui import QFontMetrics
+from PySide2.QtWidgets import (
+    QFormLayout,
+    QGroupBox,
+    QLabel,
+    QMessageBox,
+    QPushButton,
+    QScrollArea,
+    QTextEdit,
+    QVBoxLayout,
+    QWidget,
+)
 
 
 class TransformationConfiguration(QGroupBox):

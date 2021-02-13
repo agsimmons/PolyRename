@@ -1,6 +1,5 @@
 from polyrename.transformation import TRANSFORMATIONS
 
-
 VALID_DATATYPES = [str, int, bool]
 
 

@@ -1,18 +1,17 @@
 from polyrename.transformation import (
-    transformation,
-    date_time,
-    prefix,
-    suffix,
-    sequence,
     current_datetime,
+    date_time,
     insert,
-    remove_range,
-    replace_extension,
-    replace,
-    regex_replace,
     music_tags,
+    prefix,
+    regex_replace,
+    remove_range,
+    replace,
+    replace_extension,
+    sequence,
+    suffix,
+    transformation,
 )
-
 
 # List of all available transformations
 TRANSFORMATIONS = transformation.Transformation.__subclasses__()
