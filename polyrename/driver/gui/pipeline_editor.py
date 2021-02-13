@@ -160,6 +160,6 @@ class PipelineEditor(QGroupBox):
             for rename in before_after:
                 from_path = rename[0]
                 to_path = rename[1]
-                
+
                 shutil.move(str(from_path), str(to_path))
             self.file_picker.clear_file_list()
