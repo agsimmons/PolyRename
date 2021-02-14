@@ -35,3 +35,6 @@ jobs:
     - name: Test with pytest
       run: |
         poetry run pytest
+      env:
+        DISPLAY: ":99.0"
+        QT_QPA_PLATFORM: minimal
