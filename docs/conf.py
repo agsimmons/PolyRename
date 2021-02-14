@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath("../"))
 # -- Project information -----------------------------------------------------
 
 project = "PolyRename"
-copyright = "2019, Andrew Simmons, Ethan Smith"
+copyright = "2021, Andrew Simmons, Ethan Smith"
 author = "Andrew Simmons, Ethan Smith"
 
 
